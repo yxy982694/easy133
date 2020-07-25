@@ -1,0 +1,6 @@
+<!--多选框样式-->
+.ui-icon { display: block; text-indent: -9999px; overflow: hidden; background-repeat: no-repeat; }
+.ui-state-default { border: 1px solid;border-color: #A2BAC0 #B8D0D6 #B8D0D6 #A2BAC0; background-color: white;height:19px;line-height:19px;}
+.ui-icon { }
+.ui-icon-arrowthick-1-s { }
+.ui-icon-arrowthick-1-n { background-position: 0 -48px; }

@@ -1,0 +1,182 @@
+body,td,th {font-family: '微软雅黑 Regular', '微软雅黑', '宋体'; line-height:24px}
+
+.bodystyle {
+	margin: 0px;
+	overflow-x:auto;
+}
+
+.body_div {
+	background-image: url(../img/body/back.jpg);
+	width: 1280px;
+	height: 1024px;
+	MARGIN-RIGHT: auto; 
+	MARGIN-LEFT: auto;
+	position: relative;
+}
+
+.logo_div{
+	position: absolute;
+	float:left;
+	margin-left: 10px;
+	margin-top: 5px;
+}
+
+.jiuban_div {
+	position: absolute;
+	display: inline;
+	float:left;
+	margin-left: 960px;
+	width :320px;
+	height:34px;
+	
+}
+
+.span_menu{
+	background-image: url(../img/body/bmenu-left.png);
+	width: 108px;
+	height: 42px;
+	line-height:42px;
+	display:inline-block;
+	text-align: center;
+}
+
+.span_menu_over{
+	background-image: url(../img/body/lmenu-left.png);
+	width: 108px;
+	height: 42px;
+	line-height:42px;
+	display:inline-block;
+	text-align: center;
+}
+
+.span_menu2{
+	background-image: url(../img/body/bmenu-middle.png);
+	width: 108px;
+	height: 42px;
+	line-height:42px;
+	display:inline-block;
+	text-align: center;
+}
+
+.span_menu2_over{
+	background-image: url(../img/body/lmenu-middle.png);
+	width: 108px;
+	height: 42px;
+	line-height:42px;
+	display:inline-block;
+	text-align: center;
+}
+
+.span_menu3{
+	background-image: url(../img/body/bmenu-right.png);
+	width: 108px;
+	height: 42px;
+	line-height:42px;
+	display:inline-block;
+	text-align: center;
+}
+
+.span_menu3_over{
+	background-image: url(../img/body/lmenu-right.png);
+	width: 108px;
+	height: 42px;
+	line-height:42px;
+	display:inline-block;
+	text-align: center;
+}
+
+.kj1{
+	
+	margin-left: 1px;margin-top: 4px;background-image:url(../img/body/kjout.png);position: relative;float: left;height: 95px;width:70px;
+}
+
+.kj2{
+	text-align:center;margin-top: 12px;
+}
+
+.kj3{
+	width: 42px;height: 35px;border: 0;
+}
+
+.kj4{
+	text-align: center;font-size: 12px;line-height:16px;margin-top: 0px;
+}
+
+.kj5{
+	text-decoration: none;color: #000000;
+}
+
+.kj6{
+	margin-left: 1px;margin-top: 4px;position: relative;float: left;height: 95px;width:70px;
+}
+
+.db1{
+	background-color: #c9e8f0;border-bottom: solid 1px #2d6f7c;height: 38px;font-size: 12px;line-height:42px;
+}
+
+.db2{
+	background-color: white;border-bottom: solid 1px #2d6f7c;height: 38px;font-size: 12px;line-height:42px;
+}
+
+.db3{
+	float:left;height: 14px;margin-left: 10px;font-size: 12px;color: #273f50;cursor: pointer;
+}
+
+.db4{
+	float:left;font-size: 12px;margin-left: 10px;color:61859f;background-image:url(../img/body/bjsz1.png);height: 38px;width:24px;
+}
+
+.mes1{
+	height: 60px;width:740px;margin: 0 auto;border-bottom: 1px solid #c9e8f0;
+}
+
+.mes2{
+	position:relative;margin-top:10px; float: left;height: 20px;width: 740px;font-size: 14px;line-height:20px;color: #105771;font-weight:bold;
+}
+
+.mes3{
+	padding-left: 4px;cursor: pointer;
+}
+
+.mes4{
+	position:relative; float: left;height: 20px;width: 740px;font-size: 14px;line-height:20px;color: #2b4366;
+}
+
+.mes5{
+	padding-left: 4px;position:relative; float: left;width: 640px;cursor: pointer;
+}
+
+.mes6{
+	padding-left: 4px;position:relative; float: left;width: 80px;color: #a0a0a0;
+}
+
+
+.spancc{
+	float: right;margin-right: 6px;margin-top:14px;
+}
+
+*{ margin:0; padding:0;}
+li{ list-style:none;}
+.nav-box{ width:1044px; margin-top:43px;margin-left:226px; position: absolute;color: white;z-index:900;}
+.nav-ul{ height:38px;}
+.nav-ul li{float:left; width:104px; text-align:left;line-height:35px; position:relative;}
+.nav-ul li a{color:white; text-decoration:none; }
+.nav-ul li ul{display:none;}
+.nav-ul li.hover ul{display:block;}
+.nav-ul li.hover ul ul{display:none;}
+.nav-ul li.hover ul li.block ul{display:block;}
+.nav-ul li ul li{background:#51b46e; border-bottom:1px solid #666; padding:0 0px;width: 140px;
+	-webkit-box-shadow:0 0 20px #666;
+  -moz-box-shadow:0 0 20px #666;
+  box-shadow:0 0 20px #666;
+}
+.nav-ul li ul li a{font-size:14px;}
+.nav-ul li ul li ul{position:absolute; left:141px; top:0px;}
+.nav-ul li ul li ul li{width: 190px;}
+
+
+#LoginBox{position:absolute;left: 15%;MARGIN-LEFT: 251px;top:150px;background:white;width:502px;height:400px;border:1px solid #37c2c6;border-radius:7px;z-index:10000;display:none}
+#mask{margin:0;padding:0;border:none;width:100%;height:100%;background:#333;opacity:0.6;filter:alpha(opacity=60);z-index:9999;position:fixed;top:0;left:0;display:none}
+
+
+

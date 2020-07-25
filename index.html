@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="images/yidong.png">
+	<title>欢迎使用集中运维管理系统</title>
+	<link rel="stylesheet" href="css/easyui.min.css">
+<!--	<link rel="stylesheet" href="css/icon.css">-->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+<!--	<link rel="stylesheet" href="css/idangerous.swiper.css">-->
+<!--	<link rel="stylesheet" href="css/index.css">-->
+	<link rel="stylesheet" href="css/home.css">
+	<!--[if lt IE 9]>
+	<link rel="stylesheet" href="css/ie8/home/indexminheight980.css" media="screen and (min-height:980px)">
+	<link rel="stylesheet" href="css/ie8/home/ie8home.css">
+	<![endif]-->
+	<!--[if lte IE 9]>
+	<link rel="stylesheet" href="css/ie8/home/ie8_ie9home.css">
+	<link rel="stylesheet" href="css/ie8/home/ie8_ie9indexminwidth1500.css" media="screen and (min-width:1500px)">
+	<link rel="stylesheet" href="css/ie8/home/ie8_ie9indexminwidth1800.css" media="screen and (min-width:1800px)">
+	<![endif]-->
+</head>
+<body class="easyui-layout header-auto">
+<div id='Loading'>
+	<i class="fa fa-spinner fa-pulse"></i>加载中···
+</div>
+<img class="two-code" src="images/apk_qr_code.png" alt="">
+<div data-options="region:'north',border:false" style="height:70px;" class="north-header">
+	<img class="header-bg-img" src="images/header-bg.png" >
+	<div class="header-left">
+		<h1>
+			<img class="header-logo-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAApEAYAAACtvf2uAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAZiS0dEAAAAAAAA+UO7fwAAAAlwSFlzAAAASAAAAEgARslrPgAAFh9JREFUeNrtXXmcVMUR7rdglAXF4ImCXC4emKBg8ECUgGgEWQFBxMQDggYRIxBEbgX8qUQ8WPhxhMtdlcMDgijItUkQJTHGC0TAyCEuoBwLBFjOV/nj22/e1Jv35r2Z3dlFnfqnpvv1UX1Vd1dV11jmBAERERHLMmLESL16iCWuWdNYxjLWzp34XlCA8McfW5ZlWdbx4+VNfxrSkIYEQGyxxW7YEAt//HjgbdskIdi5E3jCBGAyjDSkIQ0nFGCBnnceFv5rryFs24kt+CA4dgx4zBjUc9pp5d3uNPwwAfMoMxP4lFPKm55UgZXqCtCBrVvj6J6bi6P7mWeGy33sGPD69ci/dSvCVaqgnJ//HOH69Yub47RHjBjZsAHpOnXCVeHjj8usZ8sIyPAQuvtutDs728qwMqyMFStKrR5bbLFr1EDommvKvKGWsYx14ADGccGC0mnPBRfwaolyDx7U3597Dt+7dkW/3nkn+nXx4jJvv187uL6MMca88gpwbi7a06dPUP6KqSXsoYcQGjMGHVmhQvxcXOijRyP9G2+gIYWFvvXYYot91lkIdemCfAMGANeti/j33wc9vXqhvKlTU9XuMgcxYiQzM8IQLWMZq2Lpj6tlLGNddRUCr71WPo3duBGY4xrVDWpBX3stYmvVAq5TB5gbxaWXAp9zDnCbNsALFqCcX/4S5Tz8MOIrVkS4WTPMoyuuCKIT8yy2n1A+6crKSrgLLGMZ66OPUP6ePRH6jDHGcEM86aSwxZXaREHHZGRgQo4ahdh+/eLnOnYM6YcPR3jUKHDYo0dD90eGlWFl7NiBUE4OOnjaNHQU6ejZE3jKFNBZqxY6cNiw0mr/Tw7EiJEpUxBI4Y5oGctYkyeHS9esGQLcCf2goAD0z5mDfHv3Yt5UrcqNB+ncC2nIkHBEL1oE7MEoLWMZq2NHBEaPTrg/xIiRG25AYPlyhEVQLr8fORK2uBIzgMgdSYwYycvjkTt+rsJCpO/cGQt4yZKYcm2xxf7Zz1AerxAcYGoFiooQz6Pu3Lkob+dOhB96CPQtXYpwXh7w0KEov3JlpP/Tn0raDyXuR1tssTt2RLuuvDKx3E2a6PADD6Ddv/lNeAKMGHnlFfTH6tWB6S1jGeuTT5Bv5UpEXnxx6fTGvn2g48MP0Y5x48LRv3w5AvfcA/zll6Dz9dcRzswE4+dVhv1+6qkIvfUWMHfmZ54BJkPwg6FDgW+7DTgOQySdPKkmCpaxjGVZ6JfGjREZJfy2jGWsM87Q3/3o+OabpIbHGC78atWAV6wIlM/ZYov95ZfA/kcfJL7lFuBvvklMCHjwIMofPRq4ShVd7uWXA3/7rc73wgtJd0QpAeiYNq30BKLJwO23x6fv9tt1+p49gcloSws+/FDX+913wBs2JNev69ezHB1/yimsL1K1LbbYU6dSBgDcvbt3uffdV5ypWJidnw8cdNUtwTxRQvQSgC222Pffn/AJQAuD3n0XuEGD+LlWrgRnuvVWcODdu73L5ZWBR/eMjMSoq1QJ9XBH79yZA4V6ly1DPbwj5ucjfe/eSFdYiHQjRqRqABOD3/4WeN26+Ol4NG3XDvgPfwD+z3/i5+PE7tEjaRLFiBEeee+4I+a7ZSxjnX8+AmS0b78dOTF6po+dH4Fk2GKLffPNyM87NqFqVeBKlTDODzygv3Me88QwdKjeqfv2RT7O8337gJnus88Qbt8eJ5cU2qVYxjLWvHkIbNiA+uvW1Sdvnojff1+PU+PGSHfjjYg8dCh8B4uIyCWXAIfdmd9+Gzgz07u8ChWAx41Ljo0dPcqdAXj79vjpHnxQT5gaNRDPHYLQrVvKBjBu/7pPAEHCJrZj8mSdr3nzcPUNHarzJX4CCFfPxRfrnSf83ReZgk8A+P7WW8nNo0ce8S7vjDNA7yefeOdbtIjpwrXj/POBH3usZNhh2AhnZ2u6Bg3yniePPqrHoWPHwBOAnoi8qwc1ODcXHKd7d3BEqvOiZAbGGGNmzQLm3SkIvvsO5Q4dCk42YwZ27AMHdPmXX47QwIHA3JlocHTmmcg3ciQ6olUrlEfOOX484letAv3//nc4+n56EJHVGGOMuf5671Q1a0Z+Fu/QyMedyA1ffYV+37w5MWqGDcP8yMlBPRdeiPgJE4D37MF3t4zKOWGBruuuQ6hfP5TTsCHC3NkpG3j88cQsUWvX1vmTBWpDJk5Ee04+OVAIaBnLWJUr63BRkS8DQEdQGEWhBtUMfkB9dJ8+GEARXV6VKiBw3jwQ0KJFuAbziNWmDcotKPBLiQH59FOEeAUgo8nNBR4xgowA4d69gSk049HvjTeQrlEjlLtrV8kG7kcIlrGMVa0aArHCXG+gsJPS8CgQI0b690fg2WdDk6HGnfOtRYvIwjDGOPYjNWog/UsvYXy7dgV+9FGku+QSYC4kXnG4EWZlgc5KlRDevz8clV98gXytWun+u/VWBHgSefnl+FekoiIdJgMm+GkBSC/BgwGgI3j35oIJWvgjRqBDH3/cu7xq1dCgBQu0PjkOiBEjy5Yh0KEDFj7vXuEBdM2dCzo2bULswoXAf/wjMNvLMAeE9b/6KvK3bo3ybDtROn7cwJ01URnAokX43qgRwgsXIvz558lSgoXPHfHee/VX6sunT0e6+vVR78yZ2n7iiSeAJ0/G9xdfxHfaDbRtCzx3LsrxoyYnB/N2/nytt6dWiuuja1eGgIcPR76vvw5usBEjtP9gpGPQpCHqBGCMMSaKkXh35C9+AQILC/Udg1LPvn1984uIyLnnAn/+eWJ3sldf1UdLv/J5pxo7FnjzZmDKKKj3P+883a4LL0Q8ZQe8Ezk7DiLvuku3N3XqQpT/05EBIPDee8CHDwPHnggRH14LgHQPPug9r/buBf70Ux0/caJ3OS++qNORzt27vTG/ExyZk3f51EIUFqJfVq5EuHJl4N69Ka2PX84LL+h6aRkYNL94VY5MpPr18cERIiCeFlA0mIhVi+iKqlePqP3Cgi222H/+MwKWFb/8pk2B+RgoCHbt0ne7qLcJIiKydq1OTwswphs1CvjAATKQoImYKHgP0PTpwM88Ex9/9pnON2NGuHzLl+t8Zc0ALr00Mq9ERGTPHmDelRMQAhZfMZFuyxbg778HLijQ5VB9/d57nBfAJ52EeMqKSO+OHdwQ47eT42DbEYvCuOk7dND19OrFNyyI3LcPeOtWvw0R3xcu1OVccIF3ulmz9PhddJErQY8ekQYUE6g7OOyOvG6dhALWEyuF9R7gtm2R/uDBcOW7gQv4ppt0udQGbNwIfOyYro/ainffBc7PD17SiQHK/eHZAYRrl78WAJHt2wNTyu1sAAiH1QJE7YRK6u1nB2BZSHfZZXoHJnz7rZaF+c3LG2/U+aimC+oXXk05n08/XX/PydHlOlcahPlY6X//A96yJX59UVoSN6PQHHDFCoT370c46qjg2QF+6jQ/4Ku9++4L11EU0lCdV1I4dAiYenPWU68ecEGBbn/jxsC80nz/PRlEEP1hgW8aUH7duonh2bN1+7p0Sa4c9x3RPQ5+hkBTpoD+r7+OwSISqzbes8c3vcp3+unAYU8AS5ci3datwFwgfgyAR233VXDJEgR4lSD9jRp5z/tNm4B5FaDMw49OXkG5Dihrc6e7/nrdb24h5z336O9jx4brH7bzrLOcu7oirHp1YL7Pp+Vc1NGsWNiCePcR2g+OHAH2EBZ5TrgBA4qpTfDZMI/83bsj3KIF8ODBemGTodDgxm3vwCMkdwIu0HbtgOfMKS0GkCwkKwNIuB4R8WcATz4ZWTilik89FeWHZQCnneZWLyJfLAPQ3+vVQ76770aYpra8avIoTlnY738PzBPj4cMRQ6RQ/Thzpu7HkSOBaQ+zZk38+U29/1dfAR8/zpNM/P6JOuFEtHIiItKyJTDvMOSc7ACa2P73vwhXr64bRHUbF7gbioqQn9J1v47JyAB2C1/CAjk1X3v51XP11cC7dgGTE3furDvsyisRf+AAMK8ApJOPmMoPypsBpLx9IpIKU+Bw+TIyYgxo1ALasQOBYHU20vGE6QHqBDR1KiJ79NAb2V13Ifzmmzqf/+tMXS9lLbwyZGQ4Fk8i4hxhXnpJF9CmDTAX+KpVzKfT8S5HjsidtmVLXwKLZQtIR+FVorBmjZ/wI37HUAhFoRHbl52t01FYc/w48ODBwG69atlD+TIAal0++ii12LH4TI5ujytA8XzR8/vhh4Fzc4EpPCRwXvOtAJ+hh6WDGwfVyrxi8LlyUL4xYzQ9W7bokyllVdyw/ICvOGMquu02YB65aSDD77xbciGsWqXfBrhdfcW+29bpKLWlSWWi8K9/oRx/ByOkA3jOHGC3cJMTgcLLQ4dihIUiIjJwoJ6QfJZZflC2DIBXqVQveD/M13qJ0u3HANzCOwJlRPnFj3t4FXVOvmU2viIi0rq1XneUcTgyCZ2e9gmUpVDtyZN1lKwHEQ0aRISAtthiP/884ikNd47u+khCgoKP3jo/OVbUK6yEYNGiyB0mbsfxLu/m5B53f09tALUGvArwbkjprfNqrbxAC4v4DNixe/ipA/qjc2fe8WO+q/6rWxfhFDhUKZV2dOgA+qJMq0unYN71R4zQjIBCg3373OoQhH/3O72gKHyLtQnH94suAg6rJnRDWAOhRo2AKcTzAzKwKPWKEoaS01IISp+GVasiXP5CwDSkoUSg7+CU+l9zDeJr1UKYr+x27nRLGxHPuyEtoSiVJAPhUYpHq0Th6aeBgwyErr0W2G256Ae0wHI71GC/XHaZLo8nFj4rLX8ZQBrSUCqACT9kSETazzu6LbbYV12FCU/hwrZtiHcceyCed5VkDXUIlMoHv1NHupYttdAxCHbvDjLw0P3SqhXy8aRDNY6VcqeqpTOuTZqA3sceK296fiqgLfp4NfOXiYUuV0QcWUwpPltHgbRNXruW6gVOdGC3NHzzZrf0HfG//jUw1Q0hgAs4QF2o67njDuCwJwtqOfxdJfE76KALMreNOQ2BUndX1ELSAQMiJyqlLvrb3/C9f38/mYi3Gis840L+Z5/l+KeqvUn3k4g4evRJk9wbU7j29esXyS8iXsK1hOlSV0lCsP2Lzk+7hJEjdTxldMk/mgqo+Lrr9ELnu3p2OD2kiKO/dHE4xPMx0erV8Rfmhg1I/6tfBdInIiL04EP6goBvBvwHloYc+iTBE4/jBjuIgZS4/0VEpE4dYBp6FBUB5+UB8zkz1UluOw1HrVRiBiAiztWQnppOHABdbgtUf4s4nY+m61EWprbYYns8U06UrlJhAH/5C9un41PIALwr4kKj+2R+f+op3UA+WnAeQSC+QgXu7AjT5psWdf5/vMAJi/x8RBIWSE8cCykRiZVh+DGQYC1Hyfq7YkUOrGYAQYZNtWsD04Js9epIeSVkACc6aAbAecpHa3T26ZePjDTK0vQEYQDxyy0zBkDhIP3qUxvg7NQIP/ecbiiFZsnryZM2EPI5kcSULyLOGwPKHPyABkJhPRcl0V4RcSwqOZGvvjqx/srKQj4y2Nq1vRnAvfcCf/GFvlI89ZQ3XbNn47vzLBXxfE2Yna0t1KgW/sc/3AwMYaqdo2z31QlmwoSgBazLW78e6RcvRjjWBZz3vKIsy20j7zAARFLoy1eUZDhUF/Ov6egYxY8BUHZEQ7rt2/VO734M1KcPcJRhXgADwHe+EaDQmmrwvDxqsRKcmDwqURtA9ZrznBDhJ57QDeaOOnAg1Yvh6uMz3b//XRICdqy/HhzfeYUIemNA+p1HQ6kCbdBTevYFMQzAFtt5pt2tGzDv0AS3JWTsFQBhynio9Zk8WduJ8ATjOKdE+IYbgPnslrKV4cN1v0+aFG6+cEHyNSU9OcW6N0c8DdqcV6+6fzp2jKjDi8cDmG9ChgxBuH9/YL6F2bgxoiZ2MwC1MfXpo2UPfGswf74et/BXAD2erO/55/V40KSaHrISmUgiItK8OTA57KZNbsMEhHv18l5gHKjhw5GuUyct7Jg4UU+ssEDHEg4H1nRTiEl1YhDw7h/rWCFVoCdu4hZvvuV6ngBiGSTiqRZ1P9cNYgCxfvsRT5NpMohgoSnSUxi3fXu49G4GwLctBMcyEmG+duXOT5NwcRiAiIg88ggw34x49JvSllF7xoXnPgHEClERzxMb68/KSo4B8Or35pvedHJd0sCvatXQUmy4NOKOTLfTU6bAFRGvCDffjHTjxqECml5On450lM4OG6ZdGCULs2cD0+234+ZYTzjaPrtdRLmB7qjbtkV5H3xQUgpDA/+oQfmISxVs2+Ydv38/6g//11IAPxt9+sqjyzXaqlNrNG0aMLUtdGXFfLHepMNBfj76c+1ahPlqkS65mjZFO4O0Gnzk8847mA/8b0oH4LqLQuMZMxCbnY36x48PJFWMGPngA70ewv/BCupl/2ZloZwGDchPfDMWu2pL0O8+GQEHjp6DatakH3XqndExr7+Oiho31j7+kgXbRjlPP41wly7eC5/OH+mYIWjh05FCs2ZlvvAV0LKQd/lgfwm63dRi8D17lMeXEwXEiBF6sz3nHOBbbsFHOmVN3gszxo8Tf8IEzANe4Z58EnjLFtTrHLm9gf885e8nQbercmXgOL72Ygj2+i/HBPKLESPMzz8kycmJOB+NiwsKEmYAuqPp3njw4Mi//lrGMpE/4LjpJqRbtw4Mge+0OSD0tnr4sHctR46A0CVLgJs3RzmDBumBdh79oH4u4KAj/OrVKLdpU5S3Zk2y/VFS0P/mO2sW6OL7cBqSuD3l8Llqp05o9+zZ+l90g/5QpLzgiis4T/hvu6CXsoLEX/3FdqixjJWXp91kU4s1aZLbXb03zJjBExn6m38o4wD6v359pOvWje7qvcvzc67brh3opHv7f/4zdDMzrAwrg+2j1+EmTejmHt+XLiVGfH4+wnv3lrifdUdQqMG7/5EjOj5W/YT4zEyka9iQakTgk08OVy9fdYXwEagMaByp64kCoItS55df1sRTWk4Ta97N2d+UMjtq1bBqQMTzWTTdu4eVAcQ6h9V3aPY7HcjQHTdlLbRnoNaA7Qn2As07MjBPpu75wbs0n/PSu6/7WbjEagGUlovaoHfeAeajMLaDnpnImN0yAKabNw/4r38FptYnyhdlUjKAO+/U/UctBX1Lzp9PWUXqJrASNkQZ6qijafL6dC5cPTBhDYJmzgzLWE4UAN10SUYtC4WlgwYBBxk4BZsC43vPnmSoOn+sJSDClGbHGnAhnq8oKeSiDIAOZ/jHLIsXa7sSPkt3GFF8uqnFiL3qIZ6vQv3+AYgesPwtARFP7QV9D44dC7pjXcMh/uyzI+WqceCjtgULEHa0Ljq/nyVgp06Ij/13a10P5wvbRX8C7duXxtwMMTD8k09KUQlHj2opbN++esLw/T71xZTKsiH0HhsClAFRov81mIY0pKFEgIVXp44+uqYaaIjUpUt5tz8NaUiDcQut7r8fYbqUKinw9SH/IOTcc8u7vWlIww8Bys0mPGIZaBnLWLwD0dSW/4hz9tlOhmg9OfW7y5Yhfu7cUpdqpiENaUhDGtLwY4b/A0COv+OmSkDuAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE5LTEwLTI0VDE0OjA4OjQ3KzA4OjAwe0AphgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOS0xMC0yNFQxNDowODo0NyswODowMAodkToAAABOdEVYdHN2ZzpiYXNlLXVyaQBmaWxlOi8vL2hvbWUvYWRtaW4vaWNvbi1mb250L3RtcC9pY29uX2phYzNsaDF0bzdtL0NoaW5hTW9iaWxlLnN2ZyQV6N0AAAAASUVORK5CYII=" alt="">
+		</h1>
+		<h3 id="iframeNewTop" class="iframeindex1">河南移动集中运维管理系统</h3>
+		<div class="header-center">
+			<p class="header-center-bg1"></p>
+			<p class="header-center-bg2"></p>
+			<p class="header-center-bg3"></p>
+			<!--					<img class="skew-img" src="images/header_ie8.png" >-->
+		</div>
+	</div>
+	<div class="header-right">
+		<div class="header-business">
+			<p class="header-business-item exit-home">
+				<!--					  <i class="iconfont icon-tuichu"></i>-->
+<!--				<i class="fa fa-power-off"></i>-->
+				<img  class="business-img" src="images/exit.png" alt="">
+				<span class="business-span">退出</span>
+			</p>
+			<p class="header-business-item mobile-phone">
+				<!--					  <i class="iconfont icon-shouji"></i>-->
+<!--				<i class="fa fa-mobile-phone"></i>-->
+				<img class="business-img" src="images/phone.png" alt="">
+				<span class="business-span" style="position: relative">掌上运维客户端</span>
+
+			</p>
+			<p class="header-business-item old-rukou">
+				<!--					  <i class="iconfont icon-icon_rukou"></i>-->
+<!--				<i class="fa fa-sign-out"></i>-->
+				<img class="business-img" src="images/rukou.png" alt="">
+				<span class="business-span">旧版入口</span>
+			</p>
+			<p class="header-business-item user-name"></p>
+		</div>
+		<div class="navbar">
+			<div id="pp" class="easyui-panel" data-options="border:false" style="padding:5px;"></div>
+		</div>
+	</div>
+</div>
+<div data-options="region:'center',border:false" class="homePage-center" style="padding:5px;background:#fff;">
+	<div id="tabs" class="easyui-tabs outer-tab" data-options="fit:true,border:false,onSelect:indexVariable.toggleTab">
+		<div title="首页" style="padding:10px">
+			<div class="home-container">
+				<div class="home-container-three">
+					<div class="home-left">
+						<div class="home-business-item mytodo-container">
+							<div class="todo-header">
+								<img class="todo-header-bg" src="images/mytodo-img.png" alt="">
+								<div class="todo-header-user">
+									<div class="todo-userimg">
+										<img src="images/imgioServlet.png" class="userimg-img">
+										<input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" class="userimg-input">
+									</div>
+									<p class="toto-username"></p>
+								</div>
+								<div class="todo-usertext">
+									<div class="left-item">
+										<label class="left-item-label">运维流程:</label>
+										<div class="left-item-div">
+											<input id="cc1" name="dept1" style="height:25px;">
+										</div>
+									</div>
+									<div class="left-item">
+										<label class="left-item-label">值班作业:</label>
+										<div class="left-item-div">
+											<input id="cc2" name="dept2" style="height:25px;">
+										</div>
+									</div>
+									<div class="left-item">
+										<label class="left-item-label">公共服务:</label>
+										<div class="left-item-div">
+											<input id="cc3" name="dept3" style="height:25px;">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="todo-items">
+								<div class="todo-bottom-item">
+									<div class="todo-bottom-title todo0">
+										<div class="need-item">
+											<p class="todo-item-p">
+												<img class="todo-bg0" src="images/operationAgency_bg.png" alt="">
+												<span class="todo-itemname">运维待办</span>
+											</p>
+										</div>
+										<span class="todo-itemvalue todo-itemvalue0">0</span>
+										<img class="todo_icon fa-angle-rightt fa-right0" src="images/hui_jian.png" alt="">
+										<img class="todo_icon fa-angle-downn fa-down0" src="images/hui_xia.png" alt="">
+<!--										<span class="fa fa-angle-right fa-right0"></span>-->
+<!--										<span class="fa fa-angle-down fa-down0"></span>-->
+									</div>
+									<div class="todo-bottom-content todo-bottom-content0"></div>
+								</div>
+								<div class="todo-bottom-item">
+									<div class="todo-bottom-title todo1">
+										<div class="need-item">
+											<p class="todo-item-p">
+												<img class="todo-bg1" src="images/demandAgency_bg.png" alt="">
+												<span class="todo-itemname">值班作业</span>
+											</p>
+										</div>
+										<span class="todo-itemvalue todo-itemvalue1">0</span>
+										<img class="todo_icon fa-angle-rightt fa-right1" src="images/hui_jian.png" alt="">
+										<img class="todo_icon fa-angle-downn fa-down1" src="images/hui_xia.png" alt="">
+<!--										<span class="fa fa-angle-right fa-right1"></span>-->
+<!--										<span class="fa fa-angle-down fa-down1"></span>-->
+									</div>
+									<div class="todo-bottom-content todo-bottom-content1">
+										<p class="todo-sublist todo-dayWork hidden-dayWork" onclick="indexVariable.clickDayWork()">
+											<span class="todo-listtext">值班作业待办</span>
+											<span class="todo-listvalue todo-content10">0</span>
+										</p>
+									</div>
+								</div>
+								<div class="todo-bottom-item">
+									<div class="todo-bottom-title todo2">
+										<div class="need-item">
+											<p class="todo-item-p">
+												<img class="todo-bg2" src="images/dayWork_bg.png" alt="">
+												<span class="todo-itemname">需求待办</span>
+											</p>
+										</div>
+										<span class="todo-itemvalue todo-itemvalue2">0</span>
+<!--										<span class="fa fa-angle-right fa-right2"></span>-->
+										<img class="todo_icon fa-angle-rightt fa-right2" src="images/hui_jian.png" alt="">
+										<img class="todo_icon fa-angle-downn fa-down2" src="images/hui_xia.png" alt="">
+<!--										<span class="fa fa-angle-down fa-down2"></span>-->
+									</div>
+									<div class="todo-bottom-content todo-bottom-content2">
+										<p class="todo-sublist" onclick="indexVariable.clickNeedItem('HA-001')">
+											<span class="todo-listtext">需求管理工单</span>
+											<span class="todo-listvalue todo-content20">0</span>
+										</p>
+										<p class="todo-sublist todo-sublisteven" onclick="indexVariable.clickNeedItem('HA-002')">
+											<span class="todo-listtext">问题工单</span>
+											<span class="todo-listvalue todo-content21">0</span>
+										</p>
+										<p class="todo-sublist" onclick="indexVariable.clickNeedItem('HA-003')">
+											<span class="todo-listtext">割接管理工单</span>
+											<span class="todo-listvalue todo-content22">0</span>
+										</p>
+										<p class="todo-sublist todo-sublisteven" onclick="indexVariable.clickNeedItem('HA-008')">
+											<span class="todo-listtext">厂商考核管理工单</span>
+											<span class="todo-listvalue todo-content23">0</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="home-business-item duty-fulcontainer">
+							<div class="section-title">
+								<p class="section-title-name">专家值班</p>
+								<p class="section-title-click duty-all">全部 >></p>
+							</div>
+							<div class="duty-container">
+								<div class="duty-item">
+									<div class="duty-userimg"></div>
+									<div class="duty-usertext">
+										<p class="duty-username">
+											<span class="duty-name shiftBossName"></span>
+											<span class="duty-posit" style="color:#e63a62;">值班班长</span>
+										</p>
+										<p class="duty-tel shiftBossTel"></p>
+									</div>
+								</div>
+								<div class="duty-item">
+									<div class="duty-userimg"></div>
+									<div class="duty-usertext">
+										<p class="duty-username">
+											<span class="duty-name dutyAssistantName"></span>
+											<span class="duty-posit" style="color:#f3bf44;">值班助理</span>
+										</p>
+										<p class="duty-tel dutyAssistantTel"></p>
+									</div>
+								</div>
+								<div class="duty-item">
+									<div class="duty-userimg"></div>
+									<div class="duty-usertext">
+										<p class="duty-username">
+											<span class="duty-name monitorName"></span>
+											<span class="duty-posit" style="color:#66ccaf;">监控</span>
+										</p>
+										<p class="duty-tel monitorTel"></p>
+									</div>
+								</div>
+								<div class="duty-item">
+									<div class="duty-userimg"></div>
+									<div class="duty-usertext">
+										<p class="duty-username">
+											<span class="duty-name transportName"></span>
+											<span class="duty-posit" style="color:#66ccaf;">传输</span>
+										</p>
+										<p class="duty-tel transportTel"></p>
+									</div>
+								</div>
+								<div class="duty-item">
+									<div class="duty-userimg"></div>
+									<div class="duty-usertext">
+										<p class="duty-username">
+											<span class="duty-name exchangeName"></span>
+											<span class="duty-posit" style="color:#66ccaf;">交换</span>
+										</p>
+										<p class="duty-tel exchangeTel"></p>
+									</div>
+								</div>
+								<div class="duty-item">
+									<div class="duty-userimg"></div>
+									<div class="duty-usertext">
+										<p class="duty-username">
+											<span class="duty-name dataName"></span>
+											<span class="duty-posit" style="color:#66ccaf;">数据</span>
+										</p>
+										<p class="duty-tel dataTel"></p>
+									</div>
+								</div>
+								<div class="duty-item">
+									<div class="duty-userimg"></div>
+									<div class="duty-usertext">
+										<p class="duty-username">
+											<span class="duty-name webmasterName"></span>
+											<span class="duty-posit" style="color:#66ccaf;">网管</span>
+										</p>
+										<p class="duty-tel webmasterTel"></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="home-center">
+						<div class="home-business-item lastnew-fulcontainer">
+							<div class="section-title">
+								<p class="section-title-name">最新公告</p>
+								<p class="section-title-click lastnew-all">全部 >></p>
+							</div>
+							<div class="lastnew-container">
+								<div class="swiper-container">
+									<div class="swiper-wrapper">
+										<div class="swiper-slide"></div>
+									</div>
+								</div>
+								<div class="pagination"></div>
+							</div>
+						</div>
+						<div class="home-business-item upcomlist-fulcontainer">
+							<div class="section-title">
+								<p class="section-title-name">待办列表</p>
+							</div>
+							<div class="upcomlist-container">
+								<table id="dg" data-options="border:false" style="padding:5px;"></table>
+								<!-- <iframe id="upComlistTable" name="upComlistTable" src="views/home/homeTable.html" frameborder="0" border="0" width="100%" height="100%"></iframe> -->
+							</div>
+						</div>
+						<div class="home-business-item message-fulcontainer">
+							<div class="section-title">
+								<p class="section-title-name">留言板</p>
+								<p class="section-title-click">
+									<span class="message-bg"></span>
+									<span class="message-color">新建留言</span>
+									<span class="message-all">全部 >></span>
+								</p>
+							</div>
+							<div class="message-container"></div>
+						</div>
+					</div>
+					<div class="home-right">
+						<div class="home-business-item fast-fulcontainer">
+							<div class="section-title">
+								<p class="section-title-name">快速通道</p>
+								<p class="section-title-click fast-config">配置 >></p>
+							</div>
+							<div class="fast-container"></div>
+							<div class="fast-nodata hidden-fast">
+								<p>暂无数据</p>
+								<p>可通过配置,添加快速通道菜单</p>
+							</div>
+						</div>
+						<div class="home-business-item sms-fulcontainer">
+							<div class="section-title">
+								<p class="section-title-name">短信定制</p>
+							</div>
+							<div class="sms-container"></div>
+						</div>
+					</div>
+				</div>
+				<div class="home-footer">
+					<span>版权所有:中国移动通信集团河南有限公司</span>
+					<span class="info-text">技术支持:杭州东方通信软件技术有限公司</span>
+					<span class="info-text">服务热线:15936252150</span>
+					<span class="info-text">建议系统分辨率设置为1280*1024或更高</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="mm" class="easyui-menu cs-tab-menu">
+	<div id="mm-tabupdate">刷新</div>
+	<div id="mm-tabclose">关闭</div>
+	<div id="mm-tabcloseother">关闭其他</div>
+	<div id="mm-tabcloseall">关闭全部</div>
+</div>
+<div id="w" class="easyui-dialog"
+	 title="新建留言"
+	 data-options="modal:true,
+		closed:true,
+		shadow:true,
+		resizable:true,
+		constrain:true
+		"
+	 style="width:600px;height:250px;">
+	<div id="cc" class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'center'" class="win-center-container">
+			<div class="easyui-layout" data-options="fit:true">
+				<div data-options="region:'center'" class="table-center-container" style="padding:20px 0;">
+					<div class="newbuild-list newbuild-list0">
+						<span class="newbuild-list-span">*</span>
+						<label class="newbuild-list-label">标题</label>
+						<div class="newbuild-list-div">
+							<input class="newbuild-list-input" type="text">
+						</div>
+						<span class="import-red import-newbuildtitle hidden-dayWork">请输入标题</span>
+					</div>
+					<div class="newbuild-list newbuild-list1">
+						<span class="newbuild-list-span">*</span>
+						<label class="newbuild-list-label">留言</label>
+						<div class="newbuild-list-div">
+							<textarea rows="3" class="newbuild-list-area"></textarea>
+						</div>
+						<span class="import-red import-newbuildcontent hidden-dayWork">请输入留言板内容</span>
+					</div>
+					<div class="newbuild-btns">
+						<button class="eoms-btn newbuild-confirm-btn">发布</button>
+						<button class="eoms-cancel newbuild-close-btn">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--[if lt IE 9]>
+<script src="js/ie8/ie8Css3.js"></script>
+<![endif]-->
+<script type="text/javascript">
+	if (navigator.userAgent.indexOf("MSIE 8.0") > -1 || navigator.userAgent.indexOf("MSIE 9.0") > -1) {
+		document.write('<script src="js/ie8/jquery.1.7.2.min.js"><\/script>');
+	} else {
+		document.write('<script src="js/jquery-3.3.1.min.js"><\/script>');
+	}
+</script>
+<script src="js/jquery.easyui.min.js"></script>
+<script src="js/easyui-lang-zh_CN.js"></script>
+<!--<script src="js/homeEasyui.js"></script>-->
+<script src="js/idangerous.swiper.min.js"></script>
+<!--<script src="js/home.js"></script>-->
+<script src="js/jquery.cookie.js"></script>
+<script src="js/global.js"></script>
+<script src="js/index.js"></script>
+<!-- <script src="js/table/tablePagination.js"></script> -->
+<script>
+	var totalPage = 0;
+	function loadFulData(currentPage) {
+		var sheetType = sessionStorage.getItem('operSheetType') || '';
+		var jsonObj = {
+			currentPage: currentPage,
+			sheetType: sheetType
+		};
+		var jsonStr = JSON.stringify(jsonObj);
+		eomsGlobal.ajaxFn('/haeoms/home/getUpComList',function (res) {
+			loadTable(res.data);
+			// easyuiTable.loadPage({
+			// 	$page: $('#pp'),
+			// 	total: res.total,
+			// 	pageSize: 6,
+			// 	callBackFn: loadFulData
+			// });
+		},'post',jsonStr);
+	}
+	loadFulData(1);
+	// $('#pp').pagination({
+	// 	total: 114
+	// });
+	function loadTable (upcomlistData) {
+		$('#dg').datagrid({
+			data: upcomlistData,
+			fit: true,
+			fitColumns: true,
+			singleSelect: true,
+			border: false,
+			columns:[[
+				{field:'sheetid',title:'工单流水号',width:60,align:'center'},
+				{field:'sheetname',title:'工单类型',width:50,align:'center'},
+				{field:'title',title:'工单主题',width:120,align:'center'},
+				{field:'statename',title:'工单状态',width:30,align:'center'}
+			]]
+		});
+		// 加载表格
+		$('#dg').datagrid();
+	}
+</script>
+</body>
+</html>

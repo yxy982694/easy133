@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>欢迎使用集中运维管理系统</title>
+<link href="../etc/dwz-ria/themes/default/style.css?v=1" rel="stylesheet" type="text/css" media="screen"/>
+<link href="../etc/dwz-ria/themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="../etc/dwz-ria/themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
+<link href="../etc/dwz-ria/uploadify/css/uploadify.css" rel="stylesheet" type="text/css" media="screen"/>
+<script src="../js/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="../js/jquery.cookie.js" type="text/javascript"></script>
+<script src="../js/jquery.validate.js" type="text/javascript"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/dwz.min.js" type="text/javascript"></script>
+<script src="../js/jquery.datetimepicker.js" type="text/javascript"></script>
+<link href="../css/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+<link href="../css/secmain.css" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<link rel="stylesheet" href="../css/ie8_seciframe.css">
+	<![endif]-->
+<script src="../etc/dwz-ria/js/messages_zh.js" type="text/javascript"></script>
+<script src="../etc/dwz-ria/js/jquery.bgiframe.js" type="text/javascript"></script>
+<script src="../etc/dwz-ria/xheditor/xheditor-1.2.1.min.js" type="text/javascript"></script>
+<script src="../etc/dwz-ria/xheditor/xheditor_lang/zh-cn.js" type="text/javascript"></script>
+<script src="../etc/dwz-ria/uploadify/scripts/jquery.uploadify.js" type="text/javascript"></script>
+
+<!-- svg图表  supports Firefox 3.0+, Safari 3.0+, Chrome 5.0+, Opera 9.5+ and Internet Explorer 6.0+ -->
+<script type="text/javascript" src="../etc/dwz-ria/chart/raphael.js"></script>
+<script type="text/javascript" src="../etc/dwz-ria/chart/g.raphael.js"></script>
+<script type="text/javascript" src="../etc/dwz-ria/chart/g.bar.js"></script>
+<script type="text/javascript" src="../etc/dwz-ria/chart/g.line.js"></script>
+<script type="text/javascript" src="../etc/dwz-ria/chart/g.pie.js"></script>
+<script type="text/javascript" src="../etc/dwz-ria/chart/g.dot.js"></script>
+
+<script src="../etc/dwz-ria/js/dwz.regional.zh.js" type="text/javascript"></script>
+<link rel="stylesheet" href="../etc/jquery/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
+<script type="text/javascript" src="../etc/jquery/zTree_v3/js/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="../etc/jquery/zTree_v3/js/jquery.ztree.excheck-3.5.js"></script>
+
+<script type="text/javascript" src="../etc/common/sendData.js"></script>
+<script type="text/javascript" src="../etc/easyui/js/mydatagrid.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../etc/easyui/css/easyui.css">
+<script type="text/javascript" src="../etc/easyui/js/jquery.parser.js"></script>
+<script type="text/javascript" src="../etc/easyui/js/jquery.panel.js"></script>
+<script type="text/javascript" src="../etc/easyui/js/jquery.resizable.js"></script>
+<script type="text/javascript" src="../etc/easyui/js/jquery.linkbutton.js"></script>
+<script type="text/javascript" src="../etc/easyui/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="../etc/easyui/js/jquery.datagrid.js"></script>
+<script type="text/javascript" src="../etc/easyui/js/easyui-lang-zh_CN.js"></script>
+
+<style type="text/css">
+  html,body{
+    height: 100% !important;
+    background:none;
+  }
+  .loginBody{
+    height: 100% !important;
+  }
+  .loginBody .body_div{
+    height: 100%;
+  }
+  .loginBody .logo_div{
+    position: relative;
+  }
+  .loginBody .head_div{
+    position: relative;
+    text-align: center;
+    margin-top: 15px !important;
+  }
+  .loginBody .power_div{
+    position: relative;
+    bottom: 0;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 0 !important;
+  }
+  .loginBody .tig_div{
+    position: relative;
+    text-align: center;
+    margin-left: 0 !important;
+    margin-bottom: 5px;
+  }
+  .loginBody .input_div{
+    position: relative;
+    margin: 30px auto 0 auto;
+    height: 280px;
+  }
+  .loginBody .input_div>div:first-child span{
+    position: relative;
+    display: block;
+  }
+  .loginInput1,
+  .loginInput4{
+    position: relative;
+  }
+  .loginBody .loginBut{
+    position: relative;
+  }
+  #layout{
+    height: 100% !important;
+    overflow: hidden !important;
+  }
+  /* 左侧样式 */
+  #leftside{
+    position:absolute;
+    top: 0;
+    bottom: 40px;
+    width: 200px;
+    border: 1px solid #b8d0d6;
+    /* border-right: none; */
+    left: 8px;
+    box-sizing: border-box;
+    z-index: 33;
+  }
+  #mytitle{
+    /* display: none; */
+  }
+  #sidebar_s{
+    position:absolute;
+    top: 0;
+    bottom: 0;
+  }
+  #sidebar{
+    height:auto !important;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    /* border: 1px solid red; */
+    background-color: #fff;
+  }
+  /* 左边部分带边框，让宽度包含边框 */
+  .toggleCollapse,
+  .accordion,
+  .accordion .accordionContent{
+    box-sizing: border-box;
+  }
+  /* 左侧部分，title样式 */
+  .toggleCollapse{
+    height: 27px;
+  }
+  /* 左边部分，展示左侧导航的样式 */
+  .accordion{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    /* top: 27px; */
+    bottom: 0;
+    border: none;
+  }
+  /* 左边部分，展示左侧导航最内层样式 */
+  .accordion .accordionContent{
+    height: 100% !important;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: none;
+  }
+  /* 左侧导航菜单图标样式 */
+  .se1{
+    height: 40px;
+    line-height: 18px;
+    padding-right: 10px;
+    position: relative;
+  }
+  .se1>a:first-child{
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 12px;
+    height: 14px;
+	-ms-transform: translate(0,-50%);
+    transform: translate(0,-50%);
+  }
+  .se2{
+    height: 14px;
+    width: 12px;
+  }
+  .se1 .se3{
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 29px;
+	line-height: 18px;
+    -ms-transform: translate(0,-50%);
+    transform: translate(0,-50%);
+  }
+  /* 左侧隐藏的>> */
+  #sidebar_s .collapse{
+    height: 100% !important;
+    box-sizing: border-box;
+  }
+  /* 中间可拖动部分的样式 */
+  #splitBarProxy,#splitBar{
+    height:auto !important;
+    top: 0 !important;
+    bottom: 40px !important;
+    display:none;
+  }
+  /* 右边容器样式 */
+  #container{
+    position:absolute;
+    top: 0;
+    bottom: 40px;
+    left: 204px;
+    z-index: 22;
+  }
+  .tabsMore{
+    display: none !important;
+  }
+  /* 右边tab和面板 */
+  #navTab{
+    height:100% !important;
+    display: flex !important;
+    width: 100%;
+    box-sizing:border-box;
+    flex-direction: column;
+  }
+  /* 右边容器ul  tab的样式 */
+  #navTab-tabssss{
+    position:absolute;
+    left: 0 !important;
+  }
+  /* 右边部分，tab的高度 */
+  #navTab .tabsPageHeader{
+    width: 100%;
+    box-sizing:border-box;
+  }
+  /* 右边部分，带边框改为宽度包含边框 */
+  #navTab .tabsPageHeaderContent{
+    height: 26px;
+    width: 100%;
+    box-sizing:border-box;
+  }
+  /* 右边容器 面板的样式 */
+  #div_content_id{
+    flex: 1;
+    width:100%;
+    padding-left: 2px;
+    box-sizing: border-box;
+    overflow:hidden !important;
+  }
+  #div_content_id .page{ /* 把page作为容器 */
+    height:100%;
+    width: 100%;
+    overflow:auto;
+    overflow-x:hidden;
+    overflow-y:auto;
+    box-sizing: border-box;
+  }
+  /* 我的主页样式 */
+  #div_content_id>.page:first-child .pageFormContent{
+    height:100% !important;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url('../etc/img/newWelcome.png');
+    background-repeat: no-repeat;
+    background-position: -6px -6px;
+    background-size: cover;
+  }
+  /* 一 */
+  /* 查询工单，class:page里面直接嵌套一个iframe */
+  /* 未接工单，直接嵌套iframe页面 */
+  /* 已接工单，直接嵌套iframe页面 */
+  /* 已派 */
+  /* 已处理 */
+  /* 已撤销 */
+  /* 待归档 */
+  /* 已归档 */
+  /* 工单权限查询 */
+  /* 线路代维指标统计 */
+  /* 预处理情况报表 */
+  /* 家客上报集团指标统计 */
+  /* 施工预约 */
+  /* IVR无线网络投诉 */
+  /* 查询 */
+  /* 综合统计 */
+  /* 农村网络指标 */
+  iframe{
+	   /* height: calc(100% - 5px) !important; */
+	   height: 750px !important;
+	   /*height: 99.3% !important;*/
+   }
+  /* 安全管理类-厂家人员账号vpn权限申请工单-新建工单 */
+  /* 故障支撑类，省内紧急，常用资料 */
+  .j-resizeGrid .gridScroller{
+    width: 100% !important;
+  }
+  .j-resizeGrid .formBar{
+    height: 28px !important;
+  }
+  /* 二 */
+  /* 新建工单.page下面只有1个div元素 id:jkhcch_crafthand */
+  /* 在途超时统计 */
+  /* 待质检 */
+  /* 事后质检 */
+  /* 投诉问题新建 */
+  /* 政企白名单 */
+  /* 三 */
+  /* 报表下载，.page下面只有1个form子元素 */
+  /* 四 */
+  /* 延期审批，.page下面有2个子元素，form和div */
+  /* 施工预约待超时时限的配置 */
+  /* 未解决 */
+  /* 已解决 */
+  /* 已归档 */
+  /* 已发布 */
+  /* 五 */
+  /* 工单详情页，.page下面有2个div子元素 */
+  /* 已解决，未解决详情页 */
+  /* 已归档，已发布详情页 */
+
+  /* 快速通道样式 */
+  .page #main{
+    height: 98% !important;
+    overflow-y: auto !important;
+  }
+  /* 机房管理短信 */
+  .panelBar{
+    width: 100% !important;
+    height: 25px !important;
+  }
+  #smsConfig_grid_container,
+  #smsConfig_grid_container .datagrid,
+  #smsConfig_grid_container .datagrid-wrap{
+    width: 100% !important;
+    height: 310px !important;
+  }
+  #smsConfig_grid_container .datagrid-wrap {
+    padding: 0 5px 1px 5px !important;
+  }
+  #smsConfig_grid_container .datagrid-view{
+    width: 100% !important;
+    height: 310px !important;
+  }
+  #smsConfig_grid_container .datagrid-view1{
+    width: 31px !important;
+    height: 310px !important;
+    position: relative !important;
+    float: left;
+  }
+  #smsConfig_grid_container .datagrid-header-inner,
+  #smsConfig_grid_container .datagrid-htable,
+  #smsConfig_grid_container .datagrid-btable,
+  #smsConfig_grid_container .datagrid-body-inner{
+    width: 100% !important;
+  }
+  #smsConfig_grid_container .datagrid-view2{
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    padding-left: 31px;
+    height: 310px !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  #smsConfig_grid_container .datagrid-header{
+    width: 100% !important;
+    height: 25px !important;
+  }
+  #smsConfig_grid_container .datagrid-body{
+    width: 100% !important;
+    height: 285px !important;
+  }
+
+  /* 去掉除page滚动条外的其他滚动条 */
+  /* 安全管理类，厂家人员 */
+  .page #cch_draft{
+    height: 98% !important;
+  }
+  /* tab，我的主页样式 */
+  #navTab-tabssss .main{
+    margin-left: 4px !important;
+    width: 0;
+    opacity: 0;
+	filter:alpha(opacity=0);
+  }
+
+  .comboxop{
+    z-index: 9900;
+  }
+  .gridScroller{
+    border: 1px solid #D0D0D0;
+  }
+  /* 家客投诉新建工单滚动条 */
+  #jkhcch_crafthand{
+    height: 100% !important;
+    overflow: hidden !important;
+  }
+  #jkhcch_crafthand .pageContent{
+    height: 100% !important;
+    overflow: hidden !important;
+  }
+  #jkhcch_crafthand #_formId{
+    height: 100% !important;
+    /* overflow: hidden !important; */
+    display: flex !important;
+    flex-direction: column;
+  }
+  #jkhcch_crafthand .pageFormContent{
+    height: auto !important;
+    flex: 1;
+  }
+  /* 工单查询滚动条 */
+   #background{
+     z-index: 200000 !important;
+   }
+   #progressBar{
+     z-index: 200022 !important;
+   }
+  /* 底部样式 */
+  .footer-container{
+    background-color: #d5dee6;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  .foot-info{
+    padding: 10px 0;
+    color: #6c7382;
+  }
+  .info-text{
+    margin-left: 40px;
+  }
+  #navTab .tabsPageHeader li span {
+    width: auto;
+    min-width: 92px;
+  }
+  /* 修改嵌套层级z-index */
+  .dialog,
+  .comboxop{
+    z-index: 10000 !important;
+  }
+  #calendar{
+    z-index: 10001 !important;
+  }
+ /* 快速通道滚动条 */
+ .myhome-container-con{
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   left: 0;
+   top: 0;
+ }
+</style>
+<script type="text/javascript">
+	var wb_rootPath="/workbench";
+	$(function(){
+	  window.focus();
+		DWZ.init("../etc/dwz-ria/dwz.frag.xml", {
+			loginUrl:"/workbench/",// loginTitle:"登录",	// 弹出登录对话框
+			statusCode:{ok:200, error:300, timeout:301}, //【可选】
+			pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderDirection"}, //【可选】
+			debug:false,	// 调试模式 【true|false】
+			callback:function(){
+				initEnv();
+				$("#themeList").theme({themeBase:"../etc/dwz-ria/themes"}); // themeBase 相对于index页面的主题base路径
+				var _myw = screen.availWidth;   //定义一个myw，接受到当前全屏的宽
+	      		var _myh = screen.availHeight;  //定义一个myw，接受到当前全屏的高
+	      		window.moveTo(0, 0);           //把window放在左上脚
+	      		window.resizeTo(_myw, _myh);     //把当前窗体的长宽跳转为myw和myh
+				openUrl();
+			}
+		});
+		var type=getQueryVariable("type");
+		$.ajax({
+			async:false,
+			cache:false,
+			type: 'POST',
+			contentType:"application/json",
+			url: "/workbench/menu/getMenuTree?type="+type,//请求的action路径
+			error: function () {//请求失败处理函数
+				// alert('请求失败');
+			},
+			success:function(data){ //请求成功后处理函数。
+        if (data.menuTree) {
+          var menuTree = data.menuTree.replace(/href="..\//g,'href="/workbench/')
+          $('#menutree').html(menuTree);
+          $('#mytitle').html(data.mytitle);
+          // $("a").click(function(){
+          // 	saveEomslog($(this).html());
+          // });
+        }
+			}
+		});
+	});
+
+	function getQueryVariable(variable){
+               var query = decodeURI(decodeURI(window.location.search)).substring(1);
+               var vars = query.split("&");
+               for (var i=0;i<vars.length;i++) {
+                       var pair = vars[i].split("=");
+                       if(pair[0] == variable){return pair[1];}
+               }
+               return(false);
+        }
+    //保存点击菜单日志信息
+    function saveEomslog(title){
+    	$.ajax({
+    		async:false,
+    		cache:false,
+    		type: 'POST',
+    		contentType:"json",
+    		url: "/workbench/about/saveEomsLog?title="+escape(encodeURIComponent(title)),//请求的action路径
+    		error: function () {//请求失败处理函数
+
+    		},
+    		success:function(data){ //请求成功后处理函数。
+
+    		}
+    	});
+    }
+//统计菜单日志
+		function menuLog(tid,source) {
+			//alert("tid: "+tid);
+			$.ajax({
+				async:false,
+				cache:false,
+				type: 'POST',
+				contentType:"json",
+				url: "/workbench/about/menuLog?tid="+tid+"&source="+source,//请求的action路径
+				error: function (e) {//请求失败处理函数
+					console.log(e);
+				},
+				success:function(data){ //请求成功后处理函数。
+
+				}
+			});
+		}
+
+	function openInParentTab( url,title,tabGroup){
+	    var url_ = url;
+	    var variable = navTab;
+	    variable.openTab(tabGroup, url_, {title:title,external:true});
+	}
+
+	function closemywin(){
+		window.close();
+	}
+
+	function layout(){
+		var wh = $(window).height();
+		var ww = $(window).width();
+	  $("#div_content_id").css("height",$(window).height());
+    //console.log('wh:'+wh)
+    //console.log('contentH:'+$("#div_content_id").height())
+	}
+	// layout();
+	// $(window).resize(function(){layout()});
+
+</script>
+</head>
+<body id="body_divsssssssssss" class="body_div">
+<div id="layout">
+		<div id="leftside" style="top:0">
+			<div id="sidebar_s">
+				<div class="collapse">
+					<div class="toggleCollapse"><div></div></div>
+				</div>
+			</div>
+			<div id="sidebar">
+				<div id="mytitle" class="toggleCollapse"></div>
+        <div  class="accordion" fillSpace="sidebar" >
+          <div id="menutree" class="accordionContent"></div> <!-- style="background-color: #d4f5f0" -->
+        </div>
+			</div>
+		</div>
+		<div id="container" style="top:0">
+			<div id="navTab" class="tabsPage">
+				<div class="tabsPageHeader">
+					<div class="tabsPageHeaderContent">
+						<ul id="navTab-tabssss" class="navTab-tab">
+							<li tabid="main" class="main"><a href="javascript:;"><span><span class="home_icon">我的主页</span></span></a></li>
+						</ul>
+					</div>
+					<div class="tabsLeft">left</div>
+					<div class="tabsRight">right</div>
+					<div class="tabsMore">more</div>
+				</div>
+				<ul class="tabsMoreList">
+					<li><a href="javascript:;">我的主页</a></li>
+				</ul>
+				<div id="div_content_id" class="navTab-panel tabsPageContent layoutBox">
+					<div class="page unitBox">
+						<div class="pageFormContent pageFormContent-first"> <!-- layoutH="80" style="margin-right:230px;" -->
+              <!-- <img src="../etc/img/newWelcome.png" class="filter_img" alt=""> -->
+              <!-- <div class="myhome-container-con"></div> -->
+            </div>
+            <!-- <div id="qiantao"></div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+    <div class="footer-container">
+      <p class="foot-info font-smallnum">
+        <span>版权所有:中国移动通信集团河南有限公司</span>
+        <span class="info-text">技术支持:杭州东方通信软件技术有限公司</span>
+        <span class="info-text">服务热线:15936252150</span>
+		    <span class="info-text">建议系统分辨率设置为1280*1024或更高</span>
+      </p>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+// (function () {
+//   var userAgent = navigator.userAgent;
+//   var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1;
+//   var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+//   if (isIE || isIE11) {
+//     document.querySelector('.myhome-container-con').style.backgroundColor = '#dfdfdf';
+//     document.querySelector('.myhome-container-con').style.opacity = '0.5';
+//   }
+// })()
+function openUrl(){
+	// var me="null";
+  var me;
+  var startUrl = window.location.search.indexOf('&url=');
+  var endUrl = window.location.search.indexOf('&urlName=')
+  if (getQueryVariable('url')) {
+    me = window.location.search.substring(startUrl+5,endUrl).replace(/%26/g, '&')
+    // console.log(me)
+  } else {
+    me = 'null'
+  }
+	if(me!='null'){
+		// var title = "<%=urlName%>";
+		// var tabid = "<%=urlCode%>";
+    var title = decodeURI(getQueryVariable('urlName'));
+    var tabid = getQueryVariable('urlCode');
+		// mytabid = tabid;
+		var external = false;
+		if(getQueryVariable('external')=='true')
+			external=true;
+		navTab.openTab(tabid, me,{title:title,fresh:true,external:external});
+	}
+	// setTimeout(function (){//800毫秒后刷新tab
+	// 	navTab.reloadFlag(mytabid);
+	// }, 800);
+	setTimeout(function (){//解决导航莫名其妙的隐藏问题
+		$("#navTab-tabssss").css("LEFT",0 + 'px');
+	}, 4000);
+};
+</script>

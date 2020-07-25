@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-body>
+<pages>
+    <combPage id="p_demo" name="组合页面，尚未提供该功能，暂不实现">
+        <template>/html/form1.ftl</template>
+        <tabs>
+            <tab name="基本信息" refTab="fclient"/>
+            <tab name="附件" type="refTab" refTab=""/>
+            <tab name="关联工单" type="refTab" refTab=""/>
+            <tab name="流程图" type="refTab" refTab=""/>
+        </tabs>
+    </combPage>
+    <page id="fclient">
+    <panels>
+      <panel name="" id="">
+       <group>
+          <input name_cn="操作人" name_en="czr" type="text" value="{czr}" pros="readonly"/>
+         <input name_cn="操作人联系方式" name_en="phone" type="text" value="{phone}" pros="readonly"/>
+         <input name_cn="操作人部门" name_en="czr" type="text" value="{organName}" pros="readonly"/>
+         <input name_cn="操作时间" name_en="czr" type="text" value="{time1}" pros="readonly"/>
+         <input name_cn="操作人当前角色" name_en="czr" type="text" value="{roleName}" pros="readonly"/>
+         <input name_cn="客服流水号" name_en="czr" type="text" value="{czr}" pros="readonly"/>
+         <input name_cn="主题" name_en="title" type="text"/>
+         <input name_cn="紧急程度" name_en="exigence" type="select" value="0">
+                        <options>
+                            <option value="0">请选择</option>
+                            <option value="1">一级</option>
+                            <option value="2">二级</option>
+                            <option value="3">三级</option>
+                            <option value="4">四级</option>
+                        </options>
+                    </input>
+         <input name_cn="处理时限" name_en="time2" type="text" />
+         <input name_cn="受理时限" name_en="time3" type="text" />
+         <input name_cn="预约后完成时限" name_en="time4" type="text" />
+         <input name_cn="派发联系人" name_en="pflxr" type="text" />
+         <input name_cn="城乡标识" name_en="cxbs" type="text" />
+         <input name_cn="派发联系电话" name_en="pflxdh" type="text"/>
+         <input name_cn="故障时间" name_en="gzsj" type="text" />
+         <input name_cn="投诉时间" name_en="tssj" type="text"/>
+          <input name_cn="是否大面积投诉" name_en="sfdmjts" type="select" value="1">
+                        <options>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </options>
+                    </input>
+         <input name_cn="重复投诉次数" name_en="cftscs" type="text" />
+         <input name_cn="故障号码" name_en="gzhm" type="text" />
+         <input name_cn="客户姓名" name_en="khxm" type="text" />
+         <input name_cn="客户品牌" name_en="khpp" type="text"/>
+         <input name_cn="客户级别" name_en="khjb" type="select" value="1">
+                        <options>
+                            <option value="">请选择</option>
+                            <option value="钻石">钻石</option>
+                            <option value="金">金</option>
+                            <option value="银">银</option>
+                            <option value="铜">铜</option>
+                            <option value="标准">标准</option>
+                        </options>
+                    </input>
+         
+         <input name_cn="投诉分类" name_en="tsfl" type="text"/>
+         <input name_cn="投诉所在地市" name_en="tsszdcs" type="select" value="0">
+                        <options>
+                            <option value="0">请选择</option>
+                            <option value="1">郑州</option>
+                            <option value="2">开封</option>
+                            <option value="3">洛阳</option>
+                            <option value="4">平顶山</option>
+                            <option value="5">安阳</option>
+                        </options>
+                    </input>
+         <input name_cn="操作所在区县" name_en="czszqx" type="select" value="1">
+                        <options>
+                            <option value="1">请选择</option>
+                          
+                        </options>
+                    </input>
+         <input name_cn="详细地址" name_en="xxdz" type="text"/>
+         <input name_cn="宽带接入号" name_en="kdjrh" type="text"/>
+         <input name_cn="产品实例ID标识" name_en="cpslidbs" type="text"/>
+         <input name_cn="产品名称" name_en="cpmc" type="text"/>
+         <input name_cn="产品编码" name_en="cpbm" type="text"/>
+         <input name_cn="故障联系电话" name_en="gzlxdh" type="text"/>
+         <input name_cn="预处理情况" name_en="yclqk" type="text"/>
+         <input name_cn="故障现象" name_en="gzxx" type="textarea"/>
+         <input name_cn="附件1" name_en="attachFile_01" type="file" value="附件1"/>
+         
+         <input name_cn="附件2" name_en="attachFile_02" type="file" value="附件2"/>
+         <input name_cn="附件3" name_en="attachFile_03" type="file" value="附件3"/>
+         <input name_cn="保存" name_en="operDate" type="button" value="保存" />
+         <input name_cn="派发" name_en="operDate" type="button" value="派发" />
+         <input name_cn="重置" name_en="operDate" type="button" value="重置" />
+         
+       </group>
+      </panel>
+    
+    </panels>
+    </page>
+
+</pages>
+
+</xml-body>

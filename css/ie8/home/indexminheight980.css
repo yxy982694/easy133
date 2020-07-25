@@ -1,0 +1,106 @@
+.section-title {
+    padding: 15px 30px;
+}
+.mytodo-container {
+    height: 600px;
+}
+.todo-header {
+	height: 350px;
+}
+.todo-header-user {
+	top: 20px;
+}
+.todo-userimg {
+	height: 80px;
+	width: 80px;
+}
+.todo-usertext {
+	padding-top: 115px;
+}
+.todo-usertext .left-item {
+	margin-top: 35px;
+}
+.todo-usertext .left-item+.left-item {
+	margin-top: 40px;
+}
+.todo-items {
+	height: 250px;
+}
+.todo-itemvalue {
+	right: 57px;
+}
+.need-item {
+	margin-left: 30px;
+}
+.todo-bottom-item {
+	margin-top: 36px;
+}
+.todo-bottom-title .fa {
+	right: 30px;
+}
+.duty-fulcontainer {
+	height: 600px;
+}
+.duty-item {
+	margin: 0 40px;
+	margin-top: 20px;
+}
+.duty-item+.duty-item {
+	margin-top: 30px;
+}
+.duty-userimg {
+	width: 46px;
+	height: 46px;
+	background: url("../../../images/dutySpecialist_bg.png") no-repeat;
+	background-size: 100% 100%;
+	float: left;
+}
+.duty-usertext {
+	left: 60px;
+}
+.fast-fulcontainer {
+    height: 600px;
+}
+.fast-container {
+    margin-top: 6px;
+}
+.fast-container .fast-item {
+    height: 167px;
+}
+.fast-container .fast-item .fast-item-icon {
+    padding-top: 50px;
+}
+.sms-fulcontainer {
+    height: 600px;
+}
+.sms-container .sms-item {
+    height: 176px;
+}
+.sms-container .sms-item .sms-absoute .sms-text {
+    padding-top: 20px;
+}
+.lastnew-fulcontainer {
+    height: 300px;
+}
+.swiper-container {
+    height: 256px;
+    width: 100%;
+}
+.lastest-item {
+    margin: 18px 35px 0 20px;
+}
+.lastest-item+.lastest-item {
+    margin-top: 33px;
+}
+.upcomlist-fulcontainer {
+    height: 530px;
+}
+.message-fulcontainer {
+    height: 360px;
+}
+.message-container .message-item {
+    margin-top: 33px;
+}
+.message-container .message-item+.message-item {
+    margin-top: 45px; 
+}

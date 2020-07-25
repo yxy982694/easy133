@@ -1,0 +1,15 @@
+@import "./_variable";
+// 背景图片fffff
+bg-image($url)
+  background-image: url($url + ".png")
+// 不换行
+no-wrap()
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+// 清除浮动
+clear-float()
+  &:after
+    content: ''
+    display: block
+    clear: both

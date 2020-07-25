@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>欢迎使用集中运维管理系统</title>
+		<link rel="stylesheet" href="css/easyui.min.css">
+		<link rel="stylesheet" href="css/icon.css">
+		<link rel="stylesheet" href="css/iconfont.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/modifyStyle.css">
+		<!-- ie8使用的样式 -->
+		<!--[if lt IE 9]>
+		  <link rel="stylesheet" href="css/ie8/listPage/ie8ListPage.css">
+		<![endif]-->
+		<!--[if lte IE 9]>
+		<link rel="stylesheet" href="css/ie8/listPage/ie8_ie9ListPage.css">
+		<![endif]-->
+		<style type="text/css">
+			/* 留白部分的背景色 */
+			.listpage-spacewhite{
+				background-color: #f0f2f5 !important;
+			}
+			/* 西边样式 */
+			.listpage-west-center-container{
+				border-left:1px solid #dfdfdf !important;
+				border-top:1px solid #dfdfdf !important;
+				border-bottom:1px solid #dfdfdf !important;
+				border-right: 0 !important;
+			}
+			/* p标签,每个p标签的样式 */
+			.listpage-west-center-item{
+				height: 40px;
+				border-bottom: 1px solid #dfdfdf;
+				box-sizing: border-box;
+				position: relative;
+				margin: 0;
+				padding: 0;
+			}
+			/* 图标的样式 */
+			.fa-file-text{
+				color: #5241e0;
+				position: absolute;
+				left: 15px;
+				top: 50%;
+				-ms-transform: translateY(-50%);
+				transform: translateY(-50%);
+				display: block;
+			}
+			/* 文本的样式 */
+			.west-center-text{
+				position: absolute;
+				left: 30px;
+				top: 50%;
+				right: 0;
+				display: block;
+				color: #333;
+				line-height: 18px;
+				-ms-transform: translateY(-50%);
+				transform: translateY(-50%);
+			}
+			/* 中间部分样式 */
+			.my-page{
+				background: url('images/newWelcome.jpg') 100% no-repeat;
+				background-position: -10px -3px;
+				height: 100%;
+			}
+			/* tab切换的样式，重置框架样式14px，背景色和边框。固定高度 */
+			.tabs-inner,
+			.tabs-header,
+			.tabs{
+				height: 27px !important;
+				border: none !important;
+				background: #e9f0f2 !important;
+				filter: none !important;
+				font-size:12px !important;
+			}
+			.inner-tab .tabs-header{
+				border-bottom: 1px solid #dfdfdf !important;
+				box-sizing: border-box;
+			}
+			.tabs-header .tabs-selected .tabs-inner{
+				background-color: #9896a0 !important;
+				color: #fff !important;
+				border-radius: 0 !important;
+			}
+			.tabs li.tabs-selected .tabs-title{
+				font-weight: normal !important;
+			}
+			.tabs li.tabs-selected a.tabs-close{
+				opacity: 1;
+				filter: alpha(opacity=100);
+			}
+			/* 中间菜单样式 */
+			.center-tab-menu{
+				width: 20%;
+				float: left;
+				height: 70px;
+				border: 1px solid #dfdfdf;
+				border-top: none;
+				border-left: none;
+				cursor: pointer;
+				box-sizing: border-box;
+				position: relative;
+				margin: 0;
+				padding: 0;
+			}
+			.center-tab-menu .iconfont{
+				font-size: 40px;
+				color: #122555;
+				margin: 0 5px;
+				position: absolute;
+				top: 15px;
+				left: 5px;
+			}   
+			.center-tab-text{
+				display: block;
+				line-height: 20px;
+				position: absolute;
+				top: 50%;
+				left: 55px;
+				right: 0;
+				transform: translate(0,-50%);
+				-ms-transform: translate(0,-50%);
+			}
+			/* 底部公司名称样式 */
+			.info-text {
+			  margin-left: 40px;
+			}
+			.listpage-outer-south-text{
+				padding: 6px 0;
+				background-color: #d5dee6;
+				text-align: center;
+				color: #6c7382;
+			}
+			.listpage-outer-south-text span{
+				display: inline-block;
+			}
+			/* 右键菜单样式 */
+			.cs-tab-menu{
+				width:120px;
+			}
+			/* 中间部分滚动条 */
+			.panel .panel-body{
+				overflow: hidden;
+			}
+			.center-menu-container{
+				height: 100%;
+				overflow: auto;
+			}
+			/* 去掉"我的主页" */
+			.inner-tab .tabs li:first-child{
+				display: none !important;
+			}
+		</style>
+	</head>
+	<body class="easyui-layout">
+		<div id='Loading'>
+			<i class="fa fa-spinner fa-pulse"></i>加载中···
+		</div>
+		<div data-options="region:'south',border:false" class="listpage-outer-south">
+		  <div class="easyui-layout" data-options="fit:true">
+		  	<div data-options="region:'north',border:false" class="listpage-spacewhite" style="height:8px;min-height:8px;"></div>
+		  	<div data-options="region:'center',border:false" style="height: 28px;">
+		  		<div class="listpage-outer-south-text">
+					<span>版权所有:中国移动通信集团河南有限公司</span>
+					<span class="info-text">技术支持:杭州东方通信软件技术有限公司</span>
+					<span class="info-text">服务热线:15936252150</span>
+					<span class="info-text">建议系统分辨率设置为1280*1024或更高</span> 
+		  		</div>
+		  	</div>
+		  </div>
+		</div>
+		<div data-options="region:'west',border:false" class="listpage-outer-west" style="width:188px;cursor: pointer;">
+			<div class="easyui-layout" data-options="fit:true">
+				<div data-options="region:'west',border:false" style="width:6px;min-width:6px;" class="listpage-spacewhite"></div>
+				<div data-options="region:'center',border:false" class="listpage-west-center-container" style="background:#fff;"></div>
+			    <!-- <div data-options="region:'east',border:false" style="width:5px;min-width:5px;" class="listpage-spacewhite"></div> -->
+			</div>
+		</div>
+		<div data-options="region:'center',border:false" class="listpage-outer-center" style="background:#fff;">
+			<div class="easyui-layout" data-options="fit:true">
+				<div data-options="region:'center',border:true" style="background:#fff;">
+					<div class="easyui-tabs inner-tab" id="tabs" data-options="fit:true,border:false">
+						<div title="我的主页">
+							<div class="my-page"></div>
+						</div>
+					</div>
+				</div>
+			    <div data-options="region:'east',border:false" style="width:6px;min-width:6px;" class="listpage-spacewhite"></div>
+			</div>
+		</div>
+		<div id="mm" class="easyui-menu cs-tab-menu" data-options="noline:true">
+			<div id="mm-tabupdate">刷新</div>
+			<div id="mm-tabclose">关闭</div>
+			<div id="mm-tabcloseother">关闭其他</div>
+			<div id="mm-tabcloseall">关闭全部</div>
+		</div>
+		<!--[if lt IE 9]>
+		  <script src="js/ie8/html5shiv.min.js"></script>
+		  <script src="js/ie8/css3-mediaqueries.js"></script>
+		<![endif]-->
+		<script type="text/javascript">
+			if (navigator.userAgent.indexOf("MSIE 8.0") > -1 || navigator.userAgent.indexOf("MSIE 9.0") > -1) {
+				document.write('<script src="js/ie8/jquery.1.7.2.min.js"><\/script>');
+			} else {
+				document.write('<script src="js/jquery-3.3.1.min.js"><\/script>');
+			}
+		</script>
+		<script src="js/jquery.easyui.min.js"></script>
+		<script src="js/easyui-lang-zh_CN.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/global.js"></script>
+		<script>
+			eomsGlobal.completeGif();
+			// 根据主菜单id获取对应的数据
+			// 里面存放的这个id对应的左菜单的数据,每个左菜单项对应中间菜单项
+			// 封装列表页函数
+			var listPageVariable = {
+				// 如果左菜单没有对应iframe页面,则加载中间菜单页面
+				leftCenterData: [],
+				loadLeftMenu: function (arr) {
+					var html = '';
+					for (var i=0,len=arr.length;i<len;i++) {
+						html += '<p class="listpage-west-center-item" onclick="clickLeftMenu(\''+arr[i].nameCn+'\',\''+arr[i].id+'\',\''+arr[i].location+'\')">'+
+									'<span class="fa fa-file-text"></span>'+
+									'<span class="west-center-text">'+arr[i].nameCn+'</span>'+
+								'</p>';
+					}
+					document.querySelector('.listpage-west-center-container').innerHTML = html;
+				},
+				loadCenerMenu: function (arr) {
+					var html = '<div class="center-menu-container">',
+					    endHtml = '</div>';
+					for (var i=0,len=arr.length;i<len;i++) {
+						var item = arr[i].nameCn,
+						    locationCenter = arr[i].location,
+							idCenter = arr[i].id;
+						html += '<p class="center-tab-menu" title="'+item+'" onclick="clickCenterMenu(\''+item+'\',\''+locationCenter+'\',\''+idCenter+'\')">'+
+							   '<i class="iconfont '+this.loadIcon(item)+'"></i>'+
+							   '<span class="center-tab-text">'+item+'</span>'+
+							   '</p>';
+					}
+					return html + endHtml;
+				},
+				// 根据中间菜单文本,加载不同的图标
+				loadIcon: function (val) {
+					switch (val) {
+						case '新建工单':
+							return 'icon-tianxiegongdan-kuozhan-hebing'
+							break
+						case '已派':
+							return 'icon-yijiedan'
+							break
+						case '工单查询':
+							return 'icon-chaxun'
+							break
+						case '工单权限查询':
+							return 'icon-chaxun'
+							break
+						case '已归档':
+							return 'icon-guidang'
+							break
+						case '待归档':
+							return 'icon-daiban'
+							break
+						case '已处理':
+							return 'icon-icon-test'
+							break
+						case '未接工单':
+							return 'icon-weijiegongdan'
+							break
+						case '已接工单':
+							return 'icon-yijiedan'
+							break
+						case '已撤销':
+							return 'icon-chexiao1'
+							break
+						case '草稿箱':
+							return 'icon-776bianjiqi_congcaogaoxiangjiazai'
+							break
+						default:
+							return 'icon-daiban'
+					}
+				},
+				createFrame: function (url) { //scrolling="auto"
+					/**
+					 * 创建iframe标签，跳转url对应的页面
+					 */
+				   return '<iframe frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
+				},
+				addTab: function (title,locationLeft,id,arr) {
+					/**
+					 * 为tab添加一个项
+					 * 1.如果title已经存在，而对应的url不同，则刷新这个tab
+					 * 2.如果title已经存在，对应的url也相同，则什么也不做
+					 * 3.title不存在，如果flag为true，则加载中间菜单页面。vue是根据左菜单location的值来判断的
+					 *   如果有值，则展示对应的组件。如果loaction没有值，则使用默认的展示中间菜单页
+					 * 4.title不存在，如果flag不为true，则加载对应的iframe页面
+					 */
+					var contentFul = '';
+					if ($('#tabs').tabs('exists', title)){
+						$('#tabs').tabs('select', title);//选中并刷新
+						var currTab = $('#tabs').tabs('getSelected'),
+						    options = currTab.panel('options');
+						if(options.id != id && options.title != '我的主页') {
+							if (locationLeft) {
+								contentFul = this.createFrame(locationLeft);
+								$('#tabs').tabs('update',{ // 处理嵌套页面
+									tab:currTab,
+									options:{
+										id:id,
+										content:contentFul
+									}
+								});
+							} else { // 处理中间菜单页面
+								$('#tabs').tabs('update',{
+									tab:currTab,
+									options:{
+										id:id,
+										content:this.loadCenerMenu(arr)
+									}
+								});
+							}
+						}
+					} else {
+						if (locationLeft) { // 处理嵌套页面
+							contentFul = this.createFrame(locationLeft);
+							$('#tabs').tabs('add',{
+								id:id,
+								title:title,
+								content:contentFul,
+								closable:true
+							});
+						} else { // 处理中间菜单页面
+							$('#tabs').tabs('add',{
+								id:id,
+								title:title,
+								content:this.loadCenerMenu(arr),
+								closable:true
+							});
+						}
+					}
+					this.tabClose();
+				},
+			    tabCloseEven: function () {
+					var _this = this;
+					//刷新
+					$('#mm-tabupdate').click(function(){
+						var currTab = $('#tabs').tabs('getSelected'),
+						    options = currTab.panel('options'),
+							contentFul = currTab.panel('options').content;
+						if(options.title != '我的主页') {
+							$('#tabs').tabs('update',{
+								tab:currTab,
+								options:{
+									content:contentFul
+								}
+							})
+						}
+					})
+					//关闭当前
+					$('#mm-tabclose').click(function(){
+						var currtab_title = $('#mm').data("currtab");
+						$('#tabs').tabs('close',currtab_title);
+					})
+					//全部关闭
+					$('#mm-tabcloseall').click(function(){
+						$('.tabs-inner span').each(function(i,n){
+							var t = $(n).text();
+							if(t != '我的主页') {
+								$('#tabs').tabs('close',t);
+							}
+						});
+					});
+					//关闭除当前之外的TAB
+					$('#mm-tabcloseother').click(function(){
+						var prevall = $('.tabs-selected').prevAll();
+						var nextall = $('.tabs-selected').nextAll();		
+						if(prevall.length>0){
+							prevall.each(function(i,n){
+								var t=$('a:eq(0) span',$(n)).text();
+								if(t != '我的主页') {
+									$('#tabs').tabs('close',t);
+								}
+							});
+						}
+						if(nextall.length>0) {
+							nextall.each(function(i,n){
+								var t=$('a:eq(0) span',$(n)).text();
+								if(t != '我的主页') {
+									$('#tabs').tabs('close',t);
+								}
+							});
+						}
+						return false;
+					});
+				},
+				tabClose: function () {
+					/*双击关闭TAB选项卡*/
+					$(".tabs-inner").dblclick(function(){
+						var subtitle = $(this).children(".tabs-closable").text();
+						$('#tabs').tabs('close',subtitle);
+					})
+					/*为选项卡绑定右键*/
+					$(".tabs-inner").on('contextmenu',function(e){
+						$('#mm').menu('show', {
+							left: e.pageX,
+							top: e.pageY
+						});
+						var subtitle =$(this).children(".tabs-closable").text();
+						$('#mm').data("currtab",subtitle);
+						$('#tabs').tabs('select',subtitle);
+						return false;
+					});
+				},
+				getQueryVariable: function () {
+					return decodeURI(decodeURI(window.location.search)).substring(6);
+				},
+				ajaxLeftMenu: function (id) {//针对新框架type，调取接口，获取左菜单和中间菜单的数据
+				    var _this = this;
+					eomsGlobal.ajaxFn('/haeoms/resourceManage/'+id,function (res) {
+						if (res.code == '0') {
+							_this.leftCenterData = res.data;
+							_this.loadLeftMenu(res.data);
+						}
+					})
+				},
+				parmPath: function (str) {
+					var array = str.split('/');
+					return array[array.length-2]+array[array.length-1];
+				},
+			};
+			// 调取左菜单和中间菜单数据接口,并加载左菜单
+			listPageVariable.ajaxLeftMenu(location.search.substr(1));
+			/**
+			* 点击左菜单有2种情况
+			* 1.打开中间菜单页，通过拼接html
+			* 2.打开自己路径指定的页面，通过iframe
+			*   根据左菜单的loaction，是否有值。有值则打开指定iframe，无值则打开中间菜单页面
+			*/
+		   // 中间菜单直接打开iframe
+			function clickCenterMenu (title,url,id) {
+				var url = url != 'null' ? 'views'+url+'.html' : 'drillDownPages/tree.html';
+				url = title=='资源管理'?'views/sysManage/OperProcess/ConfigManageTab/resourceManage.html':url;
+				url = title=='角色管理'?'views/sysManage/OperProcess/ConfigManageTab/roleManage.html':url;
+				url = title=='用户管理'?'views/sysManage/OperProcess/ConfigManageTab/userManage.html':url;
+				listPageVariable.addTab(title,url,id);
+			}
+			// 左菜单可以分为中间菜单和iframe页面
+			function clickLeftMenu (title,id,locationLeft) {
+				var arr = [];
+				for (var i=0,listData=listPageVariable.leftCenterData,len=listData.length;i<len;i++) {
+					if (listData[i].id == id) {
+						arr = listData[i].children;
+						break;
+					}
+				}
+				locationLeft = locationLeft=='null'?null:'views'+locationLeft+'.html';
+				listPageVariable.addTab(title,locationLeft,id,arr);
+			}
+			// 获取左菜单数据，为tab绑定右键事件和菜单
+			listPageVariable.tabCloseEven();
+			// 获取iframe中参数?type=
+			// listPageVariable.ajaxLeftMenu(listPageVariable.getQueryVariable());
+		</script>
+	</body>
+</html>

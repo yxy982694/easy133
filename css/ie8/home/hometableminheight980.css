@@ -1,0 +1,6 @@
+.datagrid-header{
+	height: 50px !important;
+}
+.datagrid-row td{
+	height: 60px;
+}

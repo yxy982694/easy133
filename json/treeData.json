@@ -1,0 +1,98 @@
+{
+	"rows": [{
+	"id": "zong",
+	"jigou": "郑州分公司",
+	"name": "",
+	"tel": "",
+	"log": "",
+	"state": "closed"
+},{
+	"id": "fuzong",
+	"jigou": "分管网络副总",
+	"name": "",
+	"tel": "",
+	"log": "",
+	"_parentId": "zong",
+	"state": "closed"
+},{
+	"id": "chengyuan1",
+	"jigou": "成员",
+	"name": "张三",
+	"tel": "12345678909",
+	"log": "查看",
+	"_parentId": "fuzong"
+},{
+	"id": "wangluobusanjingli",
+	"jigou": "网络部三级经理",
+	"name": "",
+	"tel": "",
+	"log": "",
+	"_parentId": "zong",
+	"state": "closed"
+},{
+	"id": "chengyuan2",
+	"jigou": "成员",
+	"name": "张三",
+	"tel": "12345678906",
+	"log": "查看",
+	"_parentId": "wangluobusanjingli"
+},{
+	"id": "wangluobusanfujingli",
+	"jigou": "网络部三级副经理",
+	"name": "",
+	"tel": "",
+	"log": "",
+	"_parentId": "zong",
+	"state": "closed"
+},{
+	"id": "chengyuan3",
+	"jigou": "成员",
+	"name": "张三0",
+	"tel": "12345678907",
+	"log": "查看",
+	"_parentId": "wangluobusanfujingli"
+},{
+	"id": "chengyuan4",
+	"jigou": "成员",
+	"name": "张三1",
+	"tel": "12345678908",
+	"log": "查看",
+	"_parentId": "wangluobusanfujingli"
+},{
+	"id": "chengyuan5",
+	"jigou": "成员",
+	"name": "张三2",
+	"tel": "12345678903",
+	"log": "查看",
+	"_parentId": "wangluobusanfujingli"
+},{
+	"id": "fengongsiguzhang",
+	"jigou": "分公司故障管理员",
+	"name": "",
+	"tel": "",
+	"log": "",
+	"_parentId": "zong",
+	"state": "closed"
+},{
+	"id": "chengyuan33",
+	"jigou": "成员",
+	"name": "张三01",
+	"tel": "123456789073",
+	"log": "查看",
+	"_parentId": "fengongsiguzhang"
+},{
+	"id": "chengyuan44",
+	"jigou": "成员",
+	"name": "张三12",
+	"tel": "123456789082",
+	"log": "查看",
+	"_parentId": "fengongsiguzhang"
+},{
+	"id": "chengyuan55",
+	"jigou": "成员",
+	"name": "张三23",
+	"tel": "123456789031",
+	"log": "查看",
+	"_parentId": "fengongsiguzhang"
+}]
+}

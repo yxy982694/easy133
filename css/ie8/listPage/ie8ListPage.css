@@ -1,0 +1,16 @@
+.fa-file-text{
+	top: 14px !important;
+}
+.west-center-text{
+	top: 12px !important;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+/* 中间菜单样式 */
+.center-tab-text{
+	top: 25px !important;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}

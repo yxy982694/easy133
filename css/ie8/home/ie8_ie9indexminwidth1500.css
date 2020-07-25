@@ -1,0 +1,12 @@
+.combo{
+	width: 200px !important;
+}
+.combo-text{
+	width: 170px !important;
+}
+.panel.combo-p,
+.combo-panel,
+.combobox-item{
+	width: 200px !important;
+	overflow: hidden;
+}

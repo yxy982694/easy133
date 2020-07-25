@@ -1,0 +1,14 @@
+.strt-wrap{width:1000px;margin:20px;}
+.strt-part{text-align:center;float:left;position:relative;}
+.strt-part .line-v{position:relative;height:30px;width:100%;}
+.strt-part .line-v span{display:block;background:#ff9900;position:absolute;top:0;font-size:0;line-height:0;width:4px;height:30px;left:50%;}
+.strt-name{display:inline-block;cursor:pointer;padding:0 15px;height:44px;line-height:44px;border:1px solid #006699;margin:0 10px;border-radius:3px;background:#3fac73;color: white;}
+.strt-center{display:inline-block;cursor:pointer;padding:0 5px;height:44px;line-height:44px;border:1px solid #006699;margin:0px 10px 0px 170px;border-radius:3px;background:#3fac73;color: white;}
+.strt-part .line-h{height:4px;display:block;background:#ff9900;position:absolute;top:0;font-size:0;}
+.strt-part .line-h-l{width:50%;left:0;}
+.strt-part .line-h-c{width:100%;left:0;}
+.strt-part .line-h-r{width:50%;right:0;}
+.strt-block{float:left;}
+
+.fun-name{display:inline-block;cursor:pointer;padding:0 5px;height:44px;line-height:44px;border:1px solid #006699;margin:0 10px;border-radius:3px;background:#3fac73;color: white;}
+

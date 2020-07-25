@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>欢迎使用集中运维管理系统--资源管理</title>
+	<link rel="stylesheet" href="../../../../css/easyui.min.css">
+	<link rel="stylesheet" href="../../../../css/icon.css">
+	<link rel="stylesheet" href="../../../../css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../../../css/iconfont.css">
+	<link rel="stylesheet" href="../../../../css/modifyStyle.css">
+	<!-- ie8使用的样式 -->
+	<!--[if lt IE 9]>
+	<![endif]-->
+	<style type="text/css">
+		.eoms-btns input{
+			margin-right: 10px;
+		}
+		.eoms-btns .search-easy-btn{
+			margin-top: -1px;
+		}
+		.tree-folder,
+		.tree-file{
+			display: none;
+		}
+		.datagrid-header td,
+		.datagrid-body td,
+		.datagrid-footer td{
+			border-color: #ebeef5;
+			border-style: solid;
+		}
+		#mm{
+			width: 70px !important;
+		}
+		.fa{
+			margin-right: 5px;
+		}
+		.userName-input{
+			width: 150px !important;
+		}
+	</style>
+	<!--[if lte IE 9]>
+	.eoms-btns .search-easy-btn{
+		margin-top: -7px !important;
+	}
+	<![endif]-->
+</head>
+<body class="easyui-layout">
+<div id="Loading">
+	<i class="fa fa-spinner fa-spin"></i>加载中···
+</div>
+<div data-options="region:'center',border:false" class="outer-center" style="background:#fff;">
+	<div class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'north',border:false" style='height: 40px;padding:5px 0 5px 15px;' class="eoms-btns eoms-input">
+			<input class="userName-input" type="text" placeholder="用户名">
+			<a href="javascript:void(0)" data-options="iconCls:'icon-search'" class="easyui-linkbutton search-easy-btn" id="searchBtn">查询</a>
+		</div>
+		<div data-options="region:'center',border:false" style="background:#fff;padding:3px;">
+			<table id="dg" data-options="border:false" style="padding:5px;"></table>
+		</div>
+	</div>
+</div>
+<div id="mm" class="easyui-menu cs-tab-menu">
+	<div id="mm-add"><span class="fa fa-plus"></span><span>新增</span></div>
+	<div id="mm-edit"><span class="fa fa-edit"></span><span>编辑</span></div>
+	<div id="mm-cancel"><span class="fa fa-trash-o"></span><span>删除</span></div>
+</div>
+<div id="w" class="easyui-dialog"
+	 title="新增"
+	 data-options="modal:true,
+		closed:true,
+		shadow:true,
+		resizable:true,
+		constrain:true
+		"
+	 style="width:600px;height:350px;">
+	<div id="cc" class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'center'" class="win-center-container">
+			<div class="easyui-layout" data-options="fit:true">
+				<div data-options="region:'center'" class="table-center-container" style="padding:5px 0;">
+					<div class="newbuild-list">
+						<label class="newbuild-list-label">
+							<p class="newbuild-list-p">名称</p>
+						</label>
+						<div class="newbuild-list-div eoms-input">
+							<input class="newbuild-list-input name-input" type="text">
+						</div>
+						<span class="import-red import-newbuildcontent name-span hidden-content">请输入名称</span>
+					</div>
+					<div class="newbuild-list">
+						<label class="newbuild-list-label"><span class="newbuild-list-label-span">中文名称</span></label>
+						<div class="newbuild-list-div eoms-input">
+							<input class="newbuild-list-input nameCn-input" type="text">
+						</div>
+					</div>
+					<div class="newbuild-list">
+						<label class="newbuild-list-label"><span class="newbuild-list-label-span">路径</span></label>
+						<div class="newbuild-list-div eoms-input">
+							<input class="newbuild-list-input location-input" type="text">
+						</div>
+					</div>
+					<div class="newbuild-list">
+						<label class="newbuild-list-label"><span class="newbuild-list-label-span">菜单类型</span></label>
+						<div class="newbuild-list-div no-border-input">
+							<input placeholder="请选择" class="newbuild-list-input type-input" id="ccType" name="ccType" style="height:25px;">
+						</div>
+					</div>
+					<div class="newbuild-list">
+						<label class="newbuild-list-label"><span class="newbuild-list-label-span">是否网页</span></label>
+						<div class="newbuild-list-div no-border-input">
+							<input placeholder="请选择" class="newbuild-list-input isWebPage-input" id="ccWebPage" name="ccWebPage" style="height:25px;">
+						</div>
+					</div>
+					<div class="newbuild-list">
+						<label class="newbuild-list-label">
+							<p class="newbuild-list-p">排序序号</p>
+						</label>
+						<div class="newbuild-list-div eoms-input">
+							<input class="newbuild-list-input orderby-input" type="text">
+						</div>
+						<span class="import-red import-newbuildcontent orderby-span hidden-content">请输入排序序号</span>
+					</div>
+					<div class="newbuild-list">
+						<label class="newbuild-list-label"><span class="newbuild-list-label-span">状态</span></label>
+						<div class="newbuild-list-div no-border-input">
+							<input placeholder="请选择" class="newbuild-list-input status-input" id="ccState" name="ccState" style="height:25px;">
+						</div>
+					</div>
+					<div class="newbuild-list">
+						<label class="newbuild-list-label"><span class="newbuild-list-label-span">菜单描述</span></label>
+						<div class="newbuild-list-div eoms-input">
+							<input class="newbuild-list-input remark-input" type="text">
+						</div>
+					</div>
+					<div class="newbuild-list newbuild-list-con">
+						<label class="newbuild-list-label"><span class="newbuild-list-label-span">菜单图标路径</span></label>
+						<div class="newbuild-list-div newbuild-list-file no-border-input">
+							<input class="newbuild-list-input image-input" type="file">
+						</div>
+						<div class="newbuild-list-img">
+							<img src="../../../../images/imgioServlet.png">
+						</div>
+					</div>
+					<div class="newbuild-list">
+						<label class="newbuild-list-label"><span class="newbuild-list-label-span">创建时间</span></label>
+						<div class="newbuild-list-div eoms-input">
+							<input class="newbuild-list-input time-input" type="text" readonly>
+						</div>
+					</div>
+					<div class="newbuild-list">
+						<label class="newbuild-list-label"><span class="newbuild-list-label-span">创建人</span></label>
+						<div class="newbuild-list-div eoms-input">
+							<input class="newbuild-list-input creator-input" type="text" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div data-options="region:'south',border:false" style="height:70px;padding:3px;">
+            <div class="win-btn"><button class="eoms-btn">确定</button></div>
+        </div>
+	</div>
+</div>
+<!--[if lt IE 9]>
+<script src="../../../../js/ie8/html5shiv.min.js"></script>
+<script src="../../../../js/ie8/css3-mediaqueries.js"></script>
+<![endif]-->
+<script type="text/javascript">
+	if (navigator.userAgent.indexOf("MSIE 8.0") > -1 || navigator.userAgent.indexOf("MSIE 9.0") > -1) {
+		document.write('<script src="../../../../js/ie8/jquery.1.7.2.min.js"><\/script>');
+	} else {
+		document.write('<script src="../../../../js/jquery-3.3.1.min.js"><\/script>');
+	}
+</script>
+<script src="../../../../js/jquery.easyui.min.js"></script>
+<script src="../../../../js/easyui-lang-zh_CN.js"></script>
+<script src="../../../../js/jquery.cookie.js"></script>
+<script src="../../../../js/global.js"></script>
+<script src="../../../../js/table/tablePagination.js"></script>
+<script>
+	eomsGlobal.completeGif();
+	var resourceV = {
+	    rowObj: null,
+        isEdit: false,
+        type: '',
+        isWebPage: '',
+        status: '',
+		loadTree: function () {
+			eomsGlobal.ajaxFn('/haeoms/menu/resourceManageList',function (res) {
+				var treeData = res.data;
+				$('#dg').treegrid({
+					fit: true,
+					animate:true,
+					fitColumns:true,
+					data: treeData,
+					idField:'id',
+					treeField:'name',
+					lines: false,
+					border: true,
+					onContextMenu: resourceV.contentMenu,
+					columns:[[
+						{field:'name',title:'中文名称',width:120,editor:'text'},
+						{field:'nameCn',title:'名称',width:60,editor:'text',align:'center'},
+						{field:'location',title:'路径',width:60,editor:'text',align:'center'},
+						{field:'isWebpage',title:'是否网页',width:60,editor:'text',align:'center'},
+						{field:'orderby',title:'排序序号',width:60,editor:'text',align:'center'},
+						{field:'status',title:'状态',width:60,editor:'text',align:'center'},
+						{field:'type',title:'菜单描述',width:60,editor:'text',align:'center'},
+						{field:'createTime',title:'创建时间',width:60,align:'center'},
+						{field:'creator',title:'创建人',width:60,align:'center'},
+					]]
+				});
+				$('#dg').treegrid('collapseAll');
+			})
+		},
+		contentMenu: function (e,row) {
+            resourceV.rowObj = row;
+			var e = e || window.event;
+			if (e.preventDefault){
+				e.preventDefault();
+			} else {
+				e.returnValue = false;
+			}
+			$('#mm').menu('show', {
+				left: e.pageX,
+				top: e.pageY
+			});
+		},
+	};
+	resourceV.loadTree();
+	$(function () {
+		var btnArr = [{
+			oldIcon: 'search',
+			newIcon: 'search'
+		}];
+		eomsGlobal.modifyBtn(btnArr);
+		$('#mm-add').click(function () {
+            resourceV.isEdit = false;
+			$('#w').window('open');
+			$('#w').window('hcenter');
+			$('#w').window('vcenter');
+			$('.panel-title').html('新增');
+            $('.creator-input').val(window.top.indexVariable.userName);
+		})
+		$('#mm-edit').click(function () {
+		    if (!$('#dg').treegrid('getParent',resourceV.rowObj.id)) {
+                $.messager.alert('提示',$('#dg').treegrid('find',resourceV.rowObj.id).nameCn+'不可以编辑');
+                return;
+            }
+            resourceV.isEdit = true;
+			$('#w').window('open');
+			$('#w').window('hcenter');
+			$('#w').window('vcenter');
+			$('.panel-title').html('编辑');
+            $('.nameCn-input').val(resourceV.rowObj.nameCn);
+            $('.name-input').val(resourceV.rowObj.name);
+            $('.location-input').val(resourceV.rowObj.location);
+            $('.orderby-input').val(resourceV.rowObj.orderby);
+            $('.remark-input').val(resourceV.rowObj.remark);
+            $('.creator-input').val(window.top.indexVariable.userName);
+            $('#ccType').combobox('setValue',resourceV.rowObj.type);
+            $('#ccWebPage').combobox('setValue',resourceV.rowObj.isWebPage);
+            $('#ccState').combobox('setValue',resourceV.rowObj.status);
+		})
+		$('#mm-cancel').click(function () {
+			if (!$('#dg').treegrid('getParent',resourceV.rowObj.id)) {
+				$.messager.alert('提示',$('#dg').treegrid('find',resourceV.rowObj.id).nameCn+'不可删除');
+				return;
+			}
+            eomsGlobal.ajaxFn('/haeoms/menu/delResources/'+resourceV.rowObj.id,function (res) {
+                resourceV.loadTree();
+            });
+        })
+        var ccTypeData = [{
+			id: '1',
+			name: '顶部菜单'
+		},{
+			id: '2',
+			name: '左侧菜单'
+		},{
+			id: '3',
+			name: '功能菜单'
+		}];
+		$('#ccType').combobox({
+			data:ccTypeData,
+			valueField:'id',
+			textField:'name',
+			panelHeight: 'auto',
+            onChange: function (val) {
+                resourceV.type = val;
+            }
+		});
+		var ccWebPageData = [{
+			id: '1',
+			name: '是'
+		},{
+			id: '0',
+			name: '否'
+		}];
+		$('#ccWebPage').combobox({
+			data:ccWebPageData,
+			valueField:'id',
+			textField:'name',
+			panelHeight: 'auto',
+            onChange: function (val) {
+                resourceV.isWebPage = val;
+            }
+		});
+		var ccStateData = [{
+			id: '0',
+			name: '失效'
+		},{
+			id: '1',
+			name: '有效'
+		},{
+			id: '1',
+			name: '隐藏'
+		}];
+		$('#ccState').combobox({
+			data:ccStateData,
+			valueField:'id',
+			textField:'name',
+			panelHeight: 'auto',
+            onChange: function (val) {
+                resourceV.status = val;
+            }
+		});
+        $('.name-input').blur(function () {
+            if ($('.name-input').val() == '') {
+                $('.name-span').addClass('show-content').removeClass('hidden-content');
+            } else {
+                $('.name-span').removeClass('show-content').addClass('hidden-content');
+            }
+        })
+        $('.orderby-input').blur(function () {
+            if ($('.orderby-input').val() == '') {
+                $('.orderby-span').addClass('show-content').removeClass('hidden-content');
+            } else {
+                $('.orderby-span').removeClass('show-content').addClass('hidden-content');
+            }
+        })
+        function clearInput () {
+            $('.nameCn-input').val('');
+            $('.name-input').val('');
+            $('.location-input').val('');
+            $('.orderby-input').val('');
+            $('.remark-input').val('');
+            $('#ccState').combobox('clear');
+            $('#ccWebPage').combobox('clear');
+            $('#ccType').combobox('clear');
+        }
+		$('.eoms-btn').click(function () {
+            var newBuildObj = {};
+		    if ($('.name-input').val() && $('.orderby-input').val()) {
+		        if (!resourceV.isEdit) {
+                    newBuildObj = {
+                        id: '',
+                        nameCn: $('.nameCn-input').val(),
+                        name: $('.name-input').val(),
+                        location: $('.location-input').val(),
+                        type: resourceV.type,
+                        isWebpage: resourceV.isWebPage,
+                        orderby: $('.orderby-input').val(),
+                        status: resourceV.status,
+                        remark: $('.remark-input').val(),
+                        image: '菜单图标路径',
+                        createTime:$('.time-input').val(), // (new Date()).toLocaleString()
+                        creator: $('.creator-input').val(),//sessionStorage.getItem('user')
+                        parentId: resourceV.rowObj.id
+                    };
+                    newBuildStr = JSON.stringify(newBuildObj);
+                    eomsGlobal.ajaxFn('/haeoms/menu/addResource',function (res) {
+                        if(res.code == 0) {
+                            $.messager.alert('提示','操作成功');
+                            $('#w').window('close');
+                            clearInput();
+                            resourceV.loadTree();
+                        } else {
+                            $.messager.alert('提示','操作失败');
+                        }
+                    },'post',newBuildStr)
+                } else {
+                    newBuildObj = {
+                        id: resourceV.rowObj.id,
+                        nameCn: $('.nameCn-input').val(),
+                        name: $('.name-input').val(),
+                        location: $('.location-input').val(),
+                        type: resourceV.type,
+                        isWebpage: resourceV.isWebPage,
+                        orderby: $('.orderby-input').val(),
+                        status: resourceV.status,
+                        remark: $('.remark-input').val(),
+                        image: '菜单图标路径',
+                        createTime:$('.time-input').val(), // (new Date()).toLocaleString()
+                        creator: $('.creator-input').val(),//sessionStorage.getItem('user')
+                        parentId: $('#dg').treegrid('getParent',resourceV.rowObj.id).id
+                    };
+                    newBuildStr = JSON.stringify(newBuildObj);
+                    eomsGlobal.ajaxFn('/haeoms/menu/editResource',function (res) {
+                        if(res.code == 0) {
+                            $.messager.alert('提示','操作成功');
+                            $('#w').window('close');
+                            clearInput();
+                            resourceV.loadTree();
+                        } else {
+                            $.messager.alert('提示','操作失败');
+                        }
+                    },'post',newBuildStr)
+                }
+            } else {
+                if (!$('.name-input').val() && !$('.orderby-input').val()) {
+                    $('.name-span').addClass('show-content').removeClass('hidden-content');
+                    $('.orderby-span').addClass('show-content').removeClass('hidden-content');
+                } else if (!$('.name-input').val()) {
+                    $('.name-span').addClass('show-content').removeClass('hidden-content');
+                    $('.orderby-span').addClass('hidden-content').removeClass('show-content');
+                } else if (!$('.orderby-input').val()) {
+                    $('.orderby-span').addClass('show-content').removeClass('hidden-content');
+                    $('.name-span').addClass('hidden-content').removeClass('show-content');
+                }
+            }
+        })
+		function throttle(method, context) {
+			clearTimeout(method.tId);
+			method.tId= setTimeout(function(){
+				method.call(context);
+			}, 100);
+		}
+		function resizeWindow () {
+			$('#w').window('hcenter');
+			$('#w').window('vcenter');
+		}
+		window.onresize = function(){
+			throttle(resizeWindow,null);
+		}
+		function easyuiPanelOnMove (left, top) {
+			var l = left;
+			var t = top;
+			if (l < 1) {
+				l = 1;
+			}
+			if (t < 1) {
+				t = 1;
+			}
+			var width = parseInt($(this).parent().css('width')) + 14;
+			var height = parseInt($(this).parent().css('height')) + 14;
+			var right = l + width;
+			var buttom = t + height;
+			var browserWidth = $(window).width();
+			var browserHeight = $(window).height();
+			if (right > browserWidth) {
+				l = browserWidth - width;
+			}
+			if (buttom > browserHeight) {
+				t = browserHeight - height;
+			}
+			$(this).parent().css({/* 修正面板位置 */
+				left : l,
+				top : t
+			});
+		}
+		$.fn.dialog.defaults.onMove = easyuiPanelOnMove;
+		$.fn.window.defaults.onMove = easyuiPanelOnMove;
+		$.fn.panel.defaults.onMove = easyuiPanelOnMove;
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8">
+		<title>欢迎使用集中运维管理系统</title>
+		<link rel="shortcut icon" type="image/x-icon" href="images/yidong.png">
+		<!--[if lt IE 9]>
+		  <link rel="stylesheet" href="css/ie8/login/ie8_login.css">
+		  <link rel="stylesheet" href="css/ie8/login/ie8_loginminheight760.css" media="screen and (min-height:760px)">
+		<![endif]-->
+		<script type="text/javascript">
+			if (this.top != window) {
+				//刷新父窗口地址栏
+				this.top.location.reload();
+			}
+		</script>
+		<style>
+			*{
+		  padding: 0;
+		  margin: 0;
+		}
+    html{
+      height: 100%;
+    }
+    body{
+      position: relative;
+      min-height: 100%;
+    }
+    .body-flex{
+      width:100%;
+      overflow-x: hidden;
+    }
+    .login-container{
+      position: absolute;
+      top: 50%;
+      right: 100px;
+      margin-top: -120px;
+      float: right;
+      width: 350px;
+	    height: 240px;
+      overflow-y: hidden;
+      overflow-x: hidden;
+    }
+    @media screen and (max-width: 1200px) {
+      .login-container{
+        right: 50px;
+      }
+    }
+    @media screen and (min-width: 1600px) {
+      .login-container{
+        right: 200px;
+      }
+    }
+    h2{
+      margin: 0 auto 30px;
+      text-align: left;
+      color: #fff;
+    }
+    .user-color{
+      color: #D0FC68;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+    input{
+      height: 36px;
+      line-height: 36px;
+      font-size: 12px;
+      -webkit-appearance: none;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #dcdfe6;
+      box-sizing: border-box;
+      color: #606266;
+      display: inline-block;
+      font-size: 12px;
+      outline: 0;
+      padding-left: 35px;
+      -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+      transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+      width: 100%;
+    }
+    input:focus{
+      border:1px solid rgb(112,182,255);
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus{
+      box-shadow:0 0 0 60px #fff inset;
+      -webkit-text-fill-color: #878787;
+    }
+    .form-btn{
+      width: 48%;
+      color: #fff;
+      background-color: #409eff;
+      border: 0;
+      font-size: 14px;
+      height: 36px;
+      cursor: pointer;
+    }
+    .form-btn2{
+      float: right;
+    }
+    .message-box{
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2001;
+      display: none;
+    }
+    .v-modal{
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .5;
+	  filter: alpha(Opacity=50);
+      background: #000;
+      z-index: 2000;
+      display: none;
+    }
+    .el-message-box{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+      display: inline-block;
+      width: 420px;
+      padding-bottom: 10px;
+      vertical-align: middle;
+      background-color: #FFF;
+      border-radius: 4px;
+      border: 1px solid #EBEEF5;
+      font-size: 18px;
+      -webkit-box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+      text-align: left;
+      overflow: hidden;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    .el-message-box__header{
+      position: relative;
+      padding: 15px 15px 10px;
+    }
+    .el-message-box__content{
+      position: relative;
+      padding: 10px 15px;
+      color: #606266;
+      font-size: 14px;
+    }
+    .el-message-box__btns{
+      padding: 5px 15px 0;
+      text-align: right;
+    }
+    .el-message-box__headerbtn{
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 0;
+      border: none;
+      outline: 0;
+      background: 0 0;
+      color: #909399;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .el-message-box__headerbtn:hover{
+      color:#409EFF;
+    }
+    .el-message-box__message p {
+      margin: 0;
+      line-height: 24px;
+    }
+    .button-primary{
+      padding: 9px 15px;
+      font-size: 12px;
+      border-radius: 3px;
+      color: #FFF;
+      background-color: #409EFF;
+      border-color: #409EFF;
+      display: inline-block;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid #DCDFE6;
+      text-align: center;
+      box-sizing: border-box;
+      outline: 0;
+      margin: 0;
+      -webkit-appearance: none;
+      transition: .1s;
+      font-weight: 500;
+    }
+    .logo-content{
+      width: 100%;
+      margin-top: 6vh;
+    }
+    .logo{
+      margin-left: 60px;
+      margin-bottom: 20px;
+    }
+    .logo .img1{
+      height: 38px;
+      margin-right: 20px;
+    }
+    .logo .img2{
+      height: 22px;
+    }
+    .login-bg{
+      position: relative;
+      overflow: hidden;
+    }
+	.login-bg-img{
+		width: 100%;
+		min-height: 280px;
+		max-height: 500px;
+	}
+    #formVal{
+      position: relative;
+    }
+    .form-margin{
+      margin-top: 20px;
+    }
+    .form-img1{
+      position: absolute;
+      top: 7px;
+      left: 10px;
+      opacity: 0.4;
+	  filter:alpha(opacity=40);
+      height: 20px;
+      display: inline-block;
+    }
+    .form-img2{
+      position: absolute;
+      top: 63px;
+      left: 10px;
+      opacity: 0.4;
+	  filter:alpha(opacity=40);
+      height: 20px;
+      display: inline-block;
+    }
+   .body-flex .login-footer{
+     margin-top: 20px;
+     text-align: center;
+   }
+   .login-p{
+     font-size: 12px;
+     color: #6c7382;
+   }
+   .login-p2{
+     margin-top: 10px;
+     margin-bottom: 10px;
+   }
+  </style>
+	</head>
+	<body>
+		<div class="body-flex">
+			<div class="logo-content">
+				<div class="logo">
+					<img src="images/login/02.png" class="img1" alt="">
+					<img src="images/login/03.png" class="img2" alt="">
+				</div>
+				<div class="login-bg">
+					<img class="login-bg-img" src="images/login/01.png">
+					<div class="login-container">
+						<h2 class="login-title">用户登录<span class="user-color">USER</span></h2>
+						<form action="#" id="formVal" onsubmit="return false;">
+							<div>
+								<img src="images/login/userBg.png" class="form-img1" alt=""><input name="username" type="text" id="userName" placeholder="请输入用户名">
+							</div>
+							<div class="form-margin">
+								<img src="images/login/passwordBg.png" class="form-img2" alt=""><input name="password" type="password" id="userPassword"
+								 placeholder="请输入密码">
+							</div>
+							<div class="form-margin">
+								<button type="button" id="loginBtn" class="form-btn form-btn1">登录</button>
+								<button type="button" class="form-btn form-btn2" id="resetBtn">重置</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="login-space"></div> -->
+			<div class="login-footer">
+				<p class="login-p">版权所有：中国移动通信集团河南有限公司 技术支持：杭州东方通信软件技术有限公司 服务热线：15936252150 版本号：V4.0</p>
+				<p class="login-p login-p2">建议系统分辨率设置为1280*1024或更高 建议使用IE11及以上版本</p>
+			</div>
+		</div>
+		<div class="message-box" id="messageBox">
+			<div class="el-message-box">
+				<div class="el-message-box__header">
+					<button onclick="closeBtn()" type="button" class="el-message-box__headerbtn">x</button>
+				</div>
+				<div class="el-message-box__content">
+					<div class="el-message-box__message">
+						<p id="tip">账号或密码错误</p>
+					</div>
+				</div>
+				<div class="el-message-box__btns">
+					<button onclick="closeBtn()" type="button" class="button-primary">确定</button>
+				</div>
+			</div>
+		</div>
+		<div class="v-modal" id="vModal"></div>
+		<!--[if lt IE 9]>
+		  <script src="js/ie8/html5shiv.min.js"></script>
+		  <script src="js/ie8/css3-mediaqueries.js"></script>
+		<![endif]-->
+    <script type="text/javascript">
+    	if (navigator.userAgent.indexOf("MSIE 8.0") > -1 || navigator.userAgent.indexOf("MSIE 9.0") > -1) {
+    		document.write('<script src="js/ie8/jquery.1.7.2.min.js"><\/script>');
+    	} else {
+    		document.write('<script src="js/jquery-3.3.1.min.js"><\/script>');
+    	}
+    </script>
+		<script src="js/aes.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/global.js"></script>
+		<script type="text/javascript">
+			function closeBtn() {
+				$('#messageBox').fadeOut(300);
+				$('#vModal').fadeOut(300);
+			}
+			(function() {
+				if (document.cookie) {
+				  var cookies = document.cookie.split(";");//将所有cookie键值对通过分号分割为数组
+				  for (var i=0;i<cookies.length;i++) {
+				    // cookies[i] = cookies[i].trim();
+				    document.cookie = cookies[i] + ";path=/;expires=" + (new Date(0)).toUTCString();
+				    document.cookie = cookies[i] + ";path=/haeoms/;expires=" + (new Date(0)).toUTCString();
+				    document.cookie = cookies[i] + ";path=/;domain=" +document.domain+";expires=" + (new Date(0)).toUTCString();
+				    document.cookie = cookies[i] + ";path=/haeoms/;domain=" +document.domain+";expires=" + (new Date(0)).toUTCString();
+				  }
+				}
+				var baseUrl = '/haeoms/login';
+				var userName = document.getElementById('userName'),
+					userPassword = document.getElementById('userPassword'),
+					resetBtn = document.getElementById('resetBtn'),
+					loginBtn = document.getElementById('loginBtn');
+				$('#resetBtn').click(function () {
+					userName.value = '';
+					userPassword.value = '';
+				})
+				$('#loginBtn').click(function () {
+					// 测试环境
+					$.cookie('sessionUserToken','2f582a0f-1d83-4d0d-be53-eece18d7d341');
+					$.cookie('LtpaToken2','2f582a0f-1d83-4d0d-be53-eece18d7d341');
+					eomsGlobal.ajaxFn('/haeoms/menu/findNavTree',function (res) {
+						sessionStorage.setItem('findNavTree',JSON.stringify(res));
+						window.location.href = './index.html';
+					});
+					return;
+					// 生产环境
+					if (!userName.value) {
+						$('#tip').html('请输入用户名');
+						$('#messageBox').fadeIn(300);
+						$('#vModal').fadeIn(300);
+						return;
+					}
+					if (!userPassword.value) {
+						$('#tip').html('请输入密码');
+						$('#messageBox').fadeIn(300);
+						$('#vModal').fadeIn(300);
+						return;
+					}
+					var passF = encrypt(userPassword.value);
+					$.ajax({
+						url: baseUrl,
+						contentType: 'application/x-www-form-urlencoded',
+						type: 'POST',
+						data: {
+						  "username": $("#userName").val(),
+						  "password": passF
+						},
+						success: function(res) {
+							if (res.code == '00') {
+								eomsGlobal.ajaxFn('/haeoms/menu/findNavTree',function (res) {
+									sessionStorage.setItem('findNavTree',JSON.stringify(res));
+									window.location.href = './index.html';
+								});
+							} else {
+								$('#tip').html('用户名或密码错误');
+								$('#messageBox').fadeIn(300);
+								$('#vModal').fadeIn(300);
+							}
+						},
+						error: function(message) {
+						}
+					  })
+				})
+				function encrypt(word) {
+					var key = 'ihaierForTodoKey';
+					//密钥偏移量 (需要前端和后端保持一致)十六位作为密钥偏移量
+					var iv = "ihaierForTodo_Iv";
+					var _word = CryptoJS.enc.Utf8.parse(word),
+						  _key = CryptoJS.enc.Utf8.parse(key),
+						  _iv = CryptoJS.enc.Utf8.parse(iv),
+					    encrypted = CryptoJS.AES.encrypt(_word, _key, {
+						    iv: _iv,
+						    mode: CryptoJS.mode.CBC,
+						    padding: CryptoJS.pad.Pkcs7
+					});
+					return encrypted.toString();
+				}
+			})()
+		</script>
+	</body>
+</html>

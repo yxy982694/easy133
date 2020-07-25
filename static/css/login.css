@@ -1,0 +1,243 @@
+body,td,th {font-family: '微软雅黑 Regular', '微软雅黑', '宋体'; line-height:24px}
+
+.sentBut {
+	position: absolute;
+	width:121px;
+	height:44px; 
+	background-image: url(../img/duanxin.png);
+	margin-top:4px;
+	margin-left:195px;
+	text-align: center;
+	line-height:41px;
+	cursor:pointer;
+	font-family: '微软雅黑 Regular', '微软雅黑', '宋体';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 17px;
+	color: white;
+}
+
+input 
+{ 
+  border-top:0px ; 
+  border-left:0px ; 
+  border-right:0px ; 
+  border-bottom: 0px ; 
+}
+
+.loginBut {
+	position: absolute; 
+	width:121px;
+	height:41px;
+	background-image: url(../img/login.png);
+	margin-left:213px;
+	text-align: center;
+	line-height:41px;
+	cursor:pointer;
+	font-family: '微软雅黑 Regular', '微软雅黑', '宋体';
+	font-weight: 400;
+	font-style: normal;
+	font-size:17px;
+	color: white;
+}
+
+.sentTag {
+	position: absolute;
+	width:160px;
+	margin-left:40px;
+	font-family: 'SimSun';
+	font-style: normal;	
+}
+
+.loginBody{
+	margin: 0px;
+	overflow-x:hidden;
+	overflow-y:hidden;
+}
+
+html,body_div{
+	background-image: url(../img/backgroud.jpg);
+	background-size:cover;
+	width: 100%;
+	height: 100%
+	MARGIN-RIGHT: auto; 
+	MARGIN-LEFT: auto;
+	position: absolute;
+}
+
+.logo_div{
+	position:absolute;
+	margin-left: 46px;
+	margin-top: 46px;
+}
+
+.head_div{
+	position:absolute;
+	margin-top: 135px;
+	color: white;
+	font-size: 40px;
+}
+
+.input_div{
+	background-image: url(../img/input.png);
+	position:absolute;
+	width:356px;
+	height:343px;
+	margin-left: 462px;
+	margin-top: 235px;
+
+}
+
+.tig_div{
+	position:fixed;
+	bottom:0px;
+	font-size: 12px;
+	color: white;
+}
+
+.power_div{
+	position:fixed;
+	bottom:30px;
+	font-size: 14px;
+	color: white;
+}
+
+.loginHead{
+	height:62px;
+	margin:0 auto;
+	margin-top:200px; 
+	width: 600px;
+	text-align: center;
+	font-family: '微软雅黑 Regular', '微软雅黑', '宋体';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 48px;
+	color: #FFFFFF;
+}
+
+.loginBar{
+	position:absolute;
+	width:356px;
+	height:60px;
+	margin-top: 4px;
+}
+
+.loginTag{
+	width:420px;
+	height:290px;
+	background-color: white;
+	margin:0 auto;
+	margin-top:30px;
+	border: 1px solid grey
+}
+
+
+.loginForm{
+	
+}
+
+.loginInput1{
+	background-image: url(../img/input_normal.png);
+	margin-left:18px;
+	margin-top:20px; 
+	font-size: 14px;
+	display: block;
+	height: 52px;
+	width:320px;
+}
+
+.loginInput4{
+	background-image: url(../img/input_normal.png);
+	margin-left:18px;
+	margin-top:12px; 
+	font-size: 14px;
+	display: block;
+	height: 52px;
+	width:200px;
+}
+
+.loginInput1er{
+	background-image: url(../img/input_error.png);
+	margin-left:18px;
+	margin-top:20px; 
+	font-size: 14px;
+	display: block;
+	height: 52px;
+	width:320px;
+}
+
+.loginInput4er{
+	background-image: url(../img/input_error.png);
+	margin-left:18px;
+	margin-top:12px; 
+	font-size: 14px;
+	display: block;
+	height: 52px;
+	width:200px;
+}
+
+.loginInput2{
+	background-image: url(../img/toux.png);
+	display: block;
+	height: 26px;
+	width:26px;
+	margin-left:13px;
+	margin-top:13px;
+	position: absolute; 
+}
+
+.loginInput3{
+	background-image: url(../img/pass.png);
+	display: block;
+	height: 26px;
+	width:26px;
+	margin-left:13px;
+	margin-top:13px;
+	position: absolute; 
+}
+
+.loginInput{
+	margin-left:54px;
+	margin-top:11px; 
+	font-size: 14px;
+	display: block;
+	height: 30px;
+	width:250px;
+	position: absolute; 
+	
+}
+
+.loginInputpwd{
+	margin-left:54px;
+	margin-top:11px; 
+	font-size: 14px;
+	display: block;
+	height: 30px;
+	width:140px;
+	position: absolute; 
+	
+}
+
+.loginUser{
+	width:420px;
+	height:60px;
+	border-bottom:1px solid grey
+}
+
+.loginUserSpan{
+	position: absolute;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 20px;
+	margin-top: 17px;
+	margin-left: 30px
+}
+
+.loginAlert{
+	margin-top:2px;
+	margin-left:28px;
+	color: red;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 12px;
+}

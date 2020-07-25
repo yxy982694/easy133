@@ -1,0 +1,50 @@
+/* 最新公告点击滑块 */
+.lastnew-container .pagination {
+  top: 30% !important;
+}
+/* 我的待办 */
+.todo-listvalue{
+	top: 7px !important;
+}
+.todo-listtext{
+	top: 7px !important;
+}
+.header-center{
+	display: none;
+}
+.header-left,
+.header-right{
+	background-color: transparent !important;
+}
+.todo-userimg{
+	border: 0 !important;
+}
+.l-btn-left .fa-angle-down{
+	display: none !important;
+}
+.l-btn-left .fa-angle-right{
+	display: none !important;
+}
+.l-btn-left{
+	position: relative;
+}
+.xia-icon{
+	display: inline-block !important;
+	position: absolute;
+	right: 0;
+	top: 4px;
+	width: 17px;
+	height: 17px;
+}
+.you-icon{
+	display: inline-block !important;
+	width: 13px;
+	height: 13px;
+	position: absolute;
+	right: 3px;
+	top: 50%;
+	margin-top: -7px;
+}
+.menu-rightarrow{
+	display: none !important;
+}

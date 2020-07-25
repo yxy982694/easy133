@@ -1,0 +1,57 @@
+/* 按钮样式 */
+.l-btn-text{
+	position: relative;
+}
+/* 面板样式 */
+.tabs-panels>.panel+.panel .panel-body{
+	overflow: hidden !important;
+}
+/* select下拉框高度 */
+.combobox-item{
+	padding: 7px 4px !important;
+}
+/* tab切换 */
+.outer-tab>.tabs-header{
+	height: 39px !important;
+}
+/* header顶部导航 */
+.navbar{
+	margin-top: 6px !important;
+}
+.fa-sort-desc{
+	position: absolute;
+	top: 0px;
+	right: -16px;
+}
+.menu-item{
+	height: 30px !important;
+}
+.menu-item .menu-text{
+	height: 30px !important;
+	line-height: 30px !important;
+}
+.menu-item .menu-text span{
+	display: inline-block;
+}
+.fa-angle-right{
+	position: absolute;
+	top: 14px;
+	right: 5px;
+}
+/* 首页我的待办select下拉框样式 */
+.todo-usertext .left-item-label{
+	padding-top: 5px !important;
+}
+.todo-usertext .left-item-div{
+	padding-left: 72px !important;
+}
+.easyui-menubutton .m-btn-downarrow{
+	margin-left: 5px;
+}
+.tabs li a.tabs-close{
+	background: url('../../../images/easyui_bg/tab_close.png') no-repeat !important;
+}
+.tabs li a.tabs-close:hover{
+	opacity: 1;
+	filter: alpha(Opacity=100);
+}

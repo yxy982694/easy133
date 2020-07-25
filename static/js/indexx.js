@@ -1,0 +1,1 @@
+window.str = '33'

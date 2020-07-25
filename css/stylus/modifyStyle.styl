@@ -1,0 +1,350 @@
+@import "./_mixin.styl";
+/* 加载动图 */
+#Loading{
+	position:absolute;
+	z-index:103;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	background:$loadimg_bg;
+	text-align:center;
+	padding-top: 20%;
+	color: $loadimg_color;
+	box-sizing: border-box;
+}
+.fa-spinner{
+	font-size: 20px;
+	width: 30px;
+	height: 30px;
+	display: block;
+	color: $header_left_bg;
+}
+// .load-img{
+// 	width: 20px;
+// }
+/* select下拉框样式 */
+.textbox {
+  border: 1px solid $home_module_border_color !important;
+  border-radius: 0 !important;
+  width: 100% !important;
+}
+.combo-arrow {
+  background-color: #fff !important;
+}
+.combo-p {
+  background-color: #fff;
+}
+.select-item{
+	position: relative;
+	height: 25px;
+}
+.left-item-label {
+  margin-top: 4px;
+}
+.left-item-div{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 98%;
+	padding-left: 70px;
+	box-sizing: border-box;
+}
+.textbox-text {
+  color: #606266;
+}
+.combobox-item {
+  color: #606266;
+}
+.combo-panel {
+  border: 1px solid #f5f7fa !important;
+}
+.combobox-item-selected {
+  background-color: #e4e7ed !important;
+  color: #409eff !important;
+  font-weight: bold;
+}
+/* 重置框架样式2px */
+.tabs-header{
+	padding-top: 0;
+}
+/* 重置框架样式14px */
+.panel-body,
+span,
+.pagination-info,
+.tabs-title{
+	font-size: $font-size-small !important;
+}
+.panel-header, .panel-body{
+	border-color: $home_module_border_color !important;
+}
+.panel-header{
+	filter: none !important;// 去掉针对ie8的背景色
+}
+// 重置窗口部分样式
+.window{
+	border: 1px solid #a4d1ff;
+	background: #fff;
+	padding: 10px;
+	-moz-border-radius: 0 !important;
+	-webkit-border-radius: 0 !important;
+	border-radius: 0 !important
+	filter: none !important;// 去掉针对ie8的背景色
+}
+.window-header{
+	border: 0 !important;
+	border-bottom: 1px $table_td_color_border !important;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+.window-header .panel-title{
+	text-align: center;
+}
+.messager-window{
+	border: 0 !important;
+}
+.messager-window .panel-title{
+	text-align: left;
+}
+.window .window-body{
+	border: 0 !important;
+}
+/* 第一个center */
+.win-center-container{
+	border: 0 !important;
+}
+/* 第一个center中的north */
+.layout-panel-north .panel-body{
+	border: 0 !important;
+}
+.layout-panel-south .panel-body{
+	border: 0 !important;
+}
+/* 第一个center中的center */
+.table-center-container{
+	border: 0 !important;
+}
+// 重置表格样式
+// 重置表格单元格高度和行高
+// 在js中设置了td的高度为26px,td里面的元素高度和行高都不用设置,
+// 内容在td中会自动垂直居中
+// .datagrid-header
+// .datagrid-header-inner
+// .datagrid-htable
+// .datagrid-header-row{
+// 	height: auto !important;
+// 	min-height: 28px;
+// }
+.datagrid-toolbar,
+.datagrid-pager{
+	background-color: #fff !important;
+}
+.datagrid-body .datagrid-cell{
+	font-size: $font-size-small !important;
+	no-wrap();
+}
+.datagrid-header .datagrid-cell{
+	white-space: normal !important;
+	overflow: visible !important;
+}
+// .datagrid-header-rownumber{
+// 	height: auto !important;
+// 	min-height: 28px;
+// 	line-height: normal !important;
+// }
+.datagrid-row-selected{
+	background-color: $table_selected_bg;
+}
+.datagrid-row-over{
+	background-color: $table_td_color_border;
+}
+
+// .table-height26 .datagrid-header-row .datagrid-cell{
+// 	height: auto !important;
+// 	line-height: normal !important;
+// }
+// 一行的高度还需要设置成26px,不设置在谷歌中默认时32px
+// .table-height26 .datagrid-row{
+// 	height: 26px !important;
+// }
+// .table-height26 .datagrid-row td{
+// 	height: 26px !important;
+// }
+// .table-height26 .datagrid-td-rownumber{
+// 	height: 26px !important;
+// }
+// .datagrid-cell-rownumber{
+// 	height: 26px !important;
+// 	line-height: 26px !important;
+// }
+// 如果有问题,可以通过设置padding-top来达到效果
+// .table-height26 .datagrid-body td .datagrid-cell{
+// 	height: auto !important;
+// 	line-height: normal !important;
+// }
+// 按钮样式
+.eoms-btn-disabled{
+	cursor: not-allowed;
+	opacity: 0.5;
+	// filter: alpha(opacity=50);
+}
+.datagrid-cell .eoms-btn{
+	padding: 3px 13px !important;
+}
+button:focus{
+	outline:0;
+}
+.l-btn{
+	-moz-border-radius: 0 !important;
+	-webkit-border-radius: 0 !important;
+	border-radius: 0 !important
+}
+.l-btn-left{
+	-moz-border-radius: 0 !important;
+	-webkit-border-radius: 0 !important;
+	border-radius: 0 !important
+}
+.eoms-btns .l-btn.l-btn-disabled{
+	cursor: not-allowed !important;
+}
+.eoms-btn{
+	font-size: $font-size-small !important;
+	display: inline-block;
+	padding: 5px 15px;
+	background-color: $select_down_selected_color;
+	border: 1px solid $select_down_selected_color;
+	color: #fff;
+	cursor: pointer;
+	// float: right;
+	margin-left: 10px;
+}
+.eoms-btn:focus{
+	outline:none;
+    filter: chroma(color=#000000);
+}
+.eoms-cancel:focus{
+	outline:none;
+	filter: chroma(color=#000000);
+}
+.eoms-cancel{
+	font-size: $font-size-small !important;
+	display: inline-block;
+	padding: 5px 15px;
+	background-color: $white;
+	border: 1px solid $input_border_color;
+	color: $input_font_color;
+	cursor: pointer;
+	float: right;
+	margin-left: 10px;
+}
+// 自定义确定和取消按钮样式
+.eoms-btn-container{
+	padding-top: 5px;
+}
+.eoms-btns .l-btn{
+	font-size: $font-size-small !important;
+	display: inline-block !important;
+	background: $select_down_selected_color !important;
+	border: 0 !important;
+	padding: 0 15px;
+	height: 26px !important;
+	line-height: 26px !important;
+	color: #fff !important;
+	cursor: pointer !important;
+	background-image: none !important;
+}
+.eoms-btns .l-btn .l-btn-left{
+	background-image: none !important;
+	padding: 0 !important;
+	height: 26px !important;
+	line-height: 26px !important;
+}
+.eoms-btns .l-btn .l-btn-text{
+	margin: 0;
+	height: 26px !important;
+	line-height: 26px !important;
+}
+//alert中的按钮  
+.dialog-button,
+.messager-button{
+	border: 0 !important;
+	overflow: hidden;
+	background: $white !important;
+}
+.messager-button .l-btn,
+.dialog-button .l-btn{
+	background: $select_down_selected_color !important;
+	border: 0 !important;
+	color: #fff !important;
+	margin-left: 10px;
+	width: auto;
+	padding: 5px 15px;
+	-moz-border-radius: 0 !important;
+	-webkit-border-radius: 0 !important;
+	border-radius: 0 !important
+	height: 16px;
+	box-sizing: content-box;
+	float: right;
+}
+.messager-button .l-btn .l-btn-left{
+	background-image: none !important;
+	padding: 0 !important;
+}
+.dialog-button .l-btn .l-btn-text{
+	margin: 0;
+	line-height: normal;
+}
+.messager-button .l-btn+.l-btn{
+	background-color: $white !important;
+	border: 1px solid $input_border_color !important;
+	color: $input_font_color !important;
+}
+.messager-icon{
+	display: none;
+}
+// 右键菜单样式
+#mm{
+	border: 0 !important;
+	padding: 0 !important;
+	background-color: $white;
+	border: 1px solid $home_module_border_color !important;
+	width: 120px !important;
+}
+#mm .menu-item{
+	border: 0;
+	background-color: $white;
+}
+#mm .menu-text{
+	padding-left: 10px;
+	color: #666;
+}
+#mm .menu-active{
+	border-color:none !important;
+	color:$white !important;
+	border-radius: 0 !important;
+	background: $home_module_border_color !important;
+}
+// 分页样式
+.pagination-info{
+	letter-spacing: 1px;
+}
+.pagination-btn-separator{
+	display: none;
+}
+.pagination-span{
+	display: inline-block;
+	margin-left: 1px;
+}
+.l-btn-plain-selected{
+	background: none !important;
+	color: $select_down_selected_color !important;
+}
+// 文本框
+input{
+	border: 1px solid $home_module_border_color !important;
+}
+input:focus{
+	outline: none !important;
+	box-shadow: none !important;
+	border: 1px solid $select_down_selected_color !important;
+}

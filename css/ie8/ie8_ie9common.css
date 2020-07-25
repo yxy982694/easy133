@@ -1,0 +1,12 @@
+/* 按钮样式 */
+.l-btn-text{
+	position: relative;
+}
+/* 面板样式 */
+.tabs-panels>.panel+.panel .panel-body{
+	overflow: hidden !important;
+}
+/* select下拉框高度 */
+.combobox-item{
+	padding: 7px 4px !important;
+}

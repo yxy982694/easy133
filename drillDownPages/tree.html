@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>欢迎使用集中运维管理系统</title>
+		<link rel="stylesheet" href="../css/easyui.min.css">
+		<link rel="stylesheet" href="../css/icon.css">
+		<link rel="stylesheet" href="../css/font-awesome.min.css">
+		<link rel="stylesheet" href="../css/modifyStyle.css">
+		<style type="text/css">
+			.tb-content{
+				float: left;
+				width: 50%;
+				text-align: center;
+				padding:5px 0;
+				margin: 0;
+			}
+			.text-center{
+				text-align: center;
+			}
+			.shenhe-radio{
+				width: 50%;
+				float: left;
+				margin: 0;
+				height: 100% !important;
+			}
+			.radio-input{
+				vertical-align: middle;
+				margin: 0 3px 0 0;
+			}
+			.bottom-yuanyin{
+				margin-top: 10px;
+				text-align: center;
+			}
+			label{
+				vertical-align: middle;
+			}
+			textarea{
+				vertical-align: middle;
+				text-align: left;
+			}
+			.shenhe-confirm{
+				margin-top: 10px;
+				text-align: center;
+			}
+			.south-log-par{
+				position: relative;
+			}
+			.log-mouth{
+				position: absolute;
+				top: 12px;
+				left: 250px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body class="easyui-layout">
+		<div id='Loading'>
+			<img class="load-img" src='../images/loading.gif'/>加载中···
+		</div>
+		<div data-options="region:'north',border:false" style='height: 26px;' class="eoms-btns">
+			<a href="javascript:void(0)" data-options="disabled:true,iconCls:'icon-add'" class="easyui-linkbutton add-easy-btn" id="addBtn">新增</a>
+			<a href="javascript:void(0)" data-options="disabled:true,iconCls:'icon-edit'" class="easyui-linkbutton edit-easy-btn" id="editBtn">编辑</a>
+			<a href="javascript:void(0)" data-options="disabled:true,iconCls:'icon-cancel'" class="easyui-linkbutton cancel-easy-btn" id="cancelBtn">删除</a>
+			<a href="javascript:void(0)" data-options="disabled:true,iconCls:'icon-print'" class="easyui-linkbutton verify-easy-btn" id="openWin">审核</a>
+		</div>
+		<div data-options="region:'center',border:false" style="background:#fff;">
+			<table id="tg"></table>
+		</div>
+		<div id="logDialog" class="easyui-dialog"
+		title="操作日志" 
+		data-options="modal:true,
+		closed:true,
+		shadow:true,
+		resizable:true,
+		constrain:true
+		"
+		style="width:950px;height:250px;">
+			<div id="cccc" class="easyui-layout" data-options="fit:true">
+			    <div data-options="region:'center'" class="win-center-container">
+					<div class="easyui-layout" data-options="fit:true">
+						<div data-options="region:'center'" class="table-center-container table-height26" style="padding:5px 0 0;">
+							<table id="dglog"></table>
+						</div>
+						<div data-options="region:'south',border:false" class="south-log-par" style="height:50px;padding:3px;">
+							<div id="pp"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="w" class="easyui-dialog" 
+		title="审核" 
+		data-options="modal:true,
+		closed:true,
+		shadow:true,
+		resizable:true,
+		constrain:true
+		"
+		style="width:950px;height:250px;">
+			<div id="cc" class="easyui-layout" data-options="fit:true">
+			    <div data-options="region:'center'" class="win-center-container">
+					<div class="easyui-layout" data-options="fit:true">
+						<div data-options="region:'north'" style="height:30px;">
+							<p class="tb-content"><span>操作人：</span><span class="caozuoren">赵丹萍</span></p>		
+							<p class="tb-content"><span>操作时间：</span><span class="caozuoshijian">2020年07月03日</span></p>
+						</div>
+						<div data-options="region:'center'" class="table-center-container table-height26" style="padding:5px 0;">
+							<table id="dgshenhe"></table>
+						</div>
+					    <div data-options="region:'south'" style="height:85px;">
+							<div class="bottom-yuanyin">
+								<label for="">审核不通过原因：</label>
+								<textarea rows="2" cols="80" id="shenheArea"></textarea>
+							</div>
+					    	<div class="shenhe-confirm"><button class="shenhe-confirmbtn eoms-btn">确定</button></div>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--[if lt IE 9]>
+		  <script src="../js/ie8/html5shiv.min.js"></script>
+		  <script src="../js/ie8/css3-mediaqueries.js"></script>
+		<![endif]-->
+		<script type="text/javascript">
+			if (navigator.userAgent.indexOf("MSIE 8.0") > -1 || navigator.userAgent.indexOf("MSIE 9.0") > -1) {
+				document.write('<script src="../js/ie8/jquery.1.7.2.min.js"><\/script>');
+			} else {
+				document.write('<script src="../js/jquery-3.3.1.min.js"><\/script>');
+			}
+		</script>
+		<script src="../js/jquery.easyui.min.js"></script>
+		<script src="../js/easyui-lang-zh_CN.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		<script src="../js/global.js"></script>
+		<script src="../js/table/tablePagination.js"></script>
+		<script>
+			eomsGlobal.completeGif();
+			var matrixList = {
+				tongguoObj: {},
+				expandId: '',
+				logId: '',
+				approveId: '',// 审核用户id
+				disableBtn: function () {
+					$('#addBtn').linkbutton('disable');
+					$('#editBtn').linkbutton('disable');
+					$('#cancelBtn').linkbutton('disable');
+					$('#openWin').linkbutton('disable');
+				},
+				clickRow: function (row) {
+					var userName = row.userName,
+							namen = row.name;
+					// $('#tg').treegrid('toggle',row.id);
+					if (userName||userName=='') {
+						$('#addBtn').linkbutton('disable');
+						$('#editBtn').linkbutton('enable');
+						$('#cancelBtn').linkbutton('enable');
+						$('#openWin').linkbutton('enable');
+					} else if (namen=='分公司故障管理员' || namen=='分管网络副总' || namen=='网络部三级副经理' || namen=='网络部三级经理') {
+						if ($('#tg').treegrid('getParent',row.id).id == '0') {
+							$('#addBtn').linkbutton('enable');
+							$('#editBtn').linkbutton('enable');
+							$('#cancelBtn').linkbutton('enable');
+							$('#openWin').linkbutton('disable');
+						} else {
+							$('#addBtn').linkbutton('enable');
+							$('#editBtn').linkbutton('disable');
+							$('#cancelBtn').linkbutton('disable');
+							$('#openWin').linkbutton('disable');
+						}
+					} else {
+						matrixList.disableBtn();
+					}
+				},
+				openLog: function () {
+					$('#logDialog').window('open');
+					$('#logDialog').window('hcenter');
+					$('#logDialog').window('vcenter');
+				},
+				loadLog: function (currentPage,userId,size) {
+					matrixList.logId = userId || matrixList.logId;
+					currentPage = currentPage || 1;
+					size = size || 10;
+					var jsonObj,jsonStr;
+					jsonObj = {
+						userid: matrixList.logId,
+						current: currentPage,
+						size: size
+					};
+					jsonStr = JSON.stringify(jsonObj);
+					eomsGlobal.ajaxFn('/haeoms/view/matrixLog/getMatrixLog',function (res) {
+						console.log(res);
+						if (res.status == '200') {
+							matrixList.loadLogTable(res.data.records);
+							easyuiTable.loadPage({
+								$page: $('#pp'),
+								total: res.data.total,
+								pageSize: 6,
+								callBackFn: matrixList.loadLog
+							});
+							matrixList.openLog();
+						}
+					},'post',jsonStr)
+				},
+				loadLogTable: function (dglogData) {
+					$('#dglog').datagrid({
+						data: dglogData,
+						rownumbers:true,
+						singleSelect:true,
+						fit:true,
+						fitColumns:true,
+						inline:true,
+						border:true,
+						columns:[[
+							{field:'operator',title:'操作人',width:60,align:'center'},
+							{field:'createtime',title:'操作时间',width:60,align:'center'},
+							{field:'opratoretype',title:'操作类型',width:60,align:'center'},
+							{field:'approveuser',title:'审核人',width:60,align:'center'},
+							{field:'approvetime ',title:'审核时间',width:60,align:'center'},
+							{field:'approvestate',title:'状态',width:60,align:'center'},
+							{field:'noreason',title:'不通过原因',width:60,align:'center'},
+							{field:'beforename',title:'修改前姓名',width:60,align:'center'},
+							{field:'beforetel',title:'修改前手机号',width:100,align:'center'},
+							{field:'aftername',title:'修改后姓名',width:60,align:'center'},
+							{field:'aftertel',title:'修改后手机号',width:100,align:'center'},
+						]]
+					});
+				},
+				loadTreeData: function () {
+					eomsGlobal.ajaxFn('/haeoms/view/matrixTree/getCityJobTree',function (res) {
+						var treeData = res.data;
+						console.log(res.data);
+						$('#tg').treegrid({
+							title:'地市群组矩阵表',
+							fit: true,
+							animate:true,
+							fitColumns:true,
+							data: treeData,
+							idField:'id',
+							treeField:'name',
+							lines: false,
+							onClickRow: matrixList.clickRow,
+							columns:[[
+								{field:'name',title:'机构',width:180,editor:'text'},
+								{field:'userName',title:'姓名',width:60,editor:'text',align:'center'},
+								{field:'phone',title:'手机号',width:80,editor:'text',align:'center'},
+								{field:'email',title:'邮箱',width:80,editor:'text',align:'center'},
+								{field:'log',title:'日志',width:80,formatter:function (value,row) {
+									var namen = row.userName;
+									if (namen) {
+										return '<span class="tree-look" onclick="matrixList.loadLog(1,\''+row.userId+'\')">查看</span>';
+									}
+								},align:'center'}
+							]]
+						});
+						$('#tg').treegrid('collapseAll');
+					},'post');
+				},
+			};
+			matrixList.loadTreeData();
+			// 设置表格页码
+			$(function(){
+				var btnArr = [{
+						oldIcon: 'add',
+						newIcon: 'plus'
+					},{
+						oldIcon: 'edit',
+						newIcon: 'edit'
+					},{
+						oldIcon: 'cancel',
+						newIcon: 'trash-o'
+					},{
+						oldIcon: 'search',
+						newIcon: 'search'
+					},{
+						oldIcon: 'print',
+						newIcon: 'calendar'
+					},{
+						oldIcon: 'help',
+						newIcon: 'calendar'
+				}];
+				eomsGlobal.modifyBtn(btnArr);
+				var editingId = '';
+				$('#addBtn').click(function () {
+					if (this.className.indexOf('l-btn-disabled')>-1) {
+						return;
+					}
+					if (editingId){
+						$('#tg').treegrid('select', editingId);
+						return;
+					}
+					var row = $('#tg').treegrid('getSelected');
+					if (row) {
+						if (row.name == '分管网络副总' || row.name == '网络部三级经理') {
+							var childLen = $('#tg').treegrid('getChildren',row.id);
+							if (childLen.length >= 1) {
+								$.messager.alert('提示',row.name+':已有1个成员，不可以再添加');
+								return;
+							}
+						}
+						var noww = (Math.random()+'').substr(2);
+						$('#tg').treegrid('append',{
+							parent: row.id,
+							data: [{
+								id: 'laile11'+noww,
+								name: "",
+								phone: "",
+								userName: "",
+								log: "查看",
+								operation: "",
+								state: "open",
+								children: [],
+								parent: row.id
+							}]
+						});
+						$('#tg').treegrid('expand',row.id);
+						$('#tg').treegrid('beginEdit','laile11'+noww);
+						editingId = 'laile11'+noww;
+					}
+				})
+				$('#editBtn').click(function () {
+					if (this.className.indexOf('l-btn-disabled')>-1) {
+						return;
+					}
+					if (editingId){
+						$('#tg').treegrid('select', editingId);
+						return;
+					}
+					var row = $('#tg').treegrid('getSelected');
+					if (row){
+						$('#tg').treegrid('beginEdit', row.id);
+						editingId = row.id;
+					}
+				})
+				$('#cancelBtn').click(function () {
+					if (this.className.indexOf('l-btn-disabled')>-1) {
+						return;
+					}
+					var row = $('#tg').treegrid('getSelected');
+					if (row){
+						$.messager.confirm('提示', '确定要删除吗？', function(r){
+							if (r) {
+								var jsonObj,jsonStr;
+								jsonObj = {
+									id: row.id
+								};
+								jsonStr = JSON.stringify(jsonObj);
+								cancelMatrixUser(jsonStr);
+							}
+						})
+					}
+				})
+				function loadSuccess (data) {
+					for (var i=0;i<data.rows.length;i++) {
+						matrixList.tongguoObj[data.rows[i].aftertel] = 0;
+					}
+				}
+				function clickShenHeRow (index,row) {
+					var ss = $("input[name='shenhe"+row.aftertel+"']:checked").val();
+					var s = ss ? ss : 0;
+					matrixList.tongguoObj[row.aftertel] = s;
+					console.log(matrixList.tongguoObj);
+				}
+				function formatShenhe (val,row) {
+					return '<p class="shenhe-radio">'+
+							'<input id="shenhe1'+row.aftertel+'" class="radio-input" type="radio" name="shenhe'+row.aftertel+'" value="1">'+
+							'<label for="shenhe1'+row.aftertel+'"  class="radio-label">通过</label>'+
+							'</p>'+
+							'<p class="shenhe-radio">'+
+							'<input id="shenhe2'+row.aftertel+'" class="radio-input" type="radio" name="shenhe'+row.aftertel+'" value="0">'+
+							'<label for="shenhe2'+row.aftertel+'" class="radio-label">不通过</label>'+
+							'</p>';
+				}
+				function openVerifyWin () {
+					$('#w').window('open');
+					$('#w').window('hcenter');
+					$('#w').window('vcenter');
+				}
+				function loadVerifyTable (userId) {
+					var jsonObj,jsonStr;
+					jsonObj = {
+						userid: userId
+					};
+					jsonStr = JSON.stringify(jsonObj);
+					eomsGlobal.ajaxFn('/haeoms/view/matrixLog/waitApproveUser',function (res) {
+						if (res.status == '200') {
+							$('#dgshenhe').datagrid({
+								data: res.data,
+								rownumbers:true,
+								singleSelect:true,
+								fit:true,
+								fitColumns:true,
+								inline:true,
+								border:true,
+								onClickRow:clickShenHeRow,
+								onLoadSuccess: loadSuccess,
+								columns:[[
+									{field:'beforename',title:'姓名',width:160,align:'center'},
+									{field:'beforetel',title:'手机号',width:160,align:'center'},
+									{field:'opratoretype',title:'操作类型',width:160,align:'center'},
+									{field:'aftername',title:'修改后姓名',width:160,align:'center'},
+									{field:'aftertel',title:'修改后手机号',width:160,align:'center'},
+									{field:'shenhe',title:'审核',width:200,align:'center',formatter:formatShenhe}
+								]]
+							});
+							openVerifyWin();
+						}
+					},'post',jsonStr)
+				}
+				$('#openWin').click(function () {
+					if (this.className.indexOf('l-btn-disabled')>-1) {
+						return;
+					}
+					var row = $('#tg').treegrid('getSelected');
+					if (row) {
+						matrixList.approveId = row.userId;
+						loadVerifyTable(row.userId);
+					}
+				})
+				function throttle(method, context) {
+					clearTimeout(method.tId);
+					method.tId= setTimeout(function(){
+						method.call(context);
+					}, 100);
+				}
+				function resizeWindow () {
+					$('#w').window('hcenter');
+					$('#w').window('vcenter');
+					$('#logDialog').window('hcenter');
+					$('#logDialog').window('vcenter');
+				}
+				window.onresize = function(){
+					throttle(resizeWindow,null);
+				}
+				function addEditMatrixUser (jsonStr) {
+					eomsGlobal.ajaxFn('/haeoms/view/matrixUser/updateMatrixUser',function (res) {
+						var p = $('#tg').treegrid('getParent',matrixList.expandId);
+						var pp = $('#tg').treegrid('getParent',p.id);
+						var s = p.name+':';
+						if (pp) {
+							pp = pp.name+'-';
+						} else {
+							pp = '';
+						}
+						if (res.status == '200' && res.message == '成功') {
+							$.messager.alert('提示',pp+s+'更新成功');
+							matrixList.loadTreeData();
+							matrixList.disableBtn();
+						} else {
+							$.messager.confirm('提示', pp+s+'更新失败,请重新输入', function(r){
+								if (r) {
+									$('#tg').treegrid('beginEdit',matrixList.expandId);
+									editingId = matrixList.expandId;
+								} else {
+									$('#tg').treegrid('remove',matrixList.expandId);
+								}
+								matrixList.disableBtn();
+							})
+						}
+					},'post',jsonStr)
+				}
+				function cancelMatrixUser (jsonStr) {
+					eomsGlobal.ajaxFn('/haeoms/view/matrixUser/deleteMatrixUser',function (res) {
+						console.log(res);
+						if (res.status == '200') {
+							matrixList.loadTreeData();
+							matrixList.disableBtn();
+						}
+					},'post',jsonStr)
+				}
+				$('body').click(function (e) {
+					var event = e ? e : window.event,
+							targetEle = event.target || event.srcElement,
+							classN = targetEle.className,
+					        flag = classN.indexOf('add-treebtn')>-1 || classN.indexOf('panel-tool-close')>-1 || classN.indexOf('datagrid-editable-input')>-1 || classN.indexOf('l-btn-text')>-1;
+					if (editingId && !flag){
+						$('#tg').treegrid('endEdit', editingId);
+						var dataRow = $('#tg').treegrid('find',editingId),
+						    dataRowParent = $('#tg').treegrid('getParent',editingId),
+						    dataRowChilds = [],
+						    telRow = dataRow.phone;
+						if (dataRowParent) {
+							dataRowChilds = $('#tg').treegrid('getChildren',dataRowParent.id);
+							matrixList.expandId = editingId;
+						}
+						if (!dataRow.userName || !dataRow.phone || !dataRow.email) {
+							$.messager.alert('提示','姓名,手机号和邮箱都为必填项');
+							$('#tg').treegrid('beginEdit', editingId);
+							return;
+						}
+						var m = 0;
+						for (var i=0,len=dataRowChilds.length;i<len;i++) {
+							if (telRow == dataRowChilds[i].phone && dataRowChilds[i].phone) {
+								m++;
+							}
+						}
+						if (m>1) {
+							$.messager.alert('提示',telRow+'已存在，请重新输入手机号');
+							$('#tg').treegrid('beginEdit', editingId);
+							return;
+						}
+						editingId = '';
+						var jsonObj,jsonStr;
+						if (dataRow.id.indexOf('laile11')>-1) {
+							jsonObj = {
+								name: dataRow.userName,
+								phone: dataRow.phone,
+								parentid: dataRowParent.id,
+								email: dataRow.email
+							};
+						} else {
+							jsonObj = {
+								id: dataRow.id,
+								name: dataRow.userName,
+								phone: dataRow.phone,
+								parentid: dataRowParent.id,
+								email: dataRow.email
+							};
+						}
+						jsonStr = JSON.stringify(jsonObj);
+						addEditMatrixUser(jsonStr);
+					}
+				})
+				function getFirst (obj){		//obj为我们的对象
+					for(var key in obj){
+						return obj[key];
+					}
+				}
+				$('.shenhe-confirmbtn').click(function () {
+					if (!$('#shenheArea').val()) {
+						$.messager.alert('温馨提示','请填写未通过原因');
+						return;
+					}
+					var shenheObj = {
+						userid: matrixList.approveId,
+						approvestate: getFirst(matrixList.tongguoObj),
+						noreason: $('#shenheArea').val()
+					};
+					console.log(shenheObj);
+					var shenheStr = JSON.stringify(shenheObj);
+					eomsGlobal.ajaxFn('/haeoms/view/matrixUser/approveMatrixUser',function (res) {
+						if (res.status == '200') {
+							$('#w').window('close');
+						}
+					},'post',shenheStr);
+				})
+				function easyuiPanelOnMove (left, top) {
+					var l = left;
+					var t = top;
+					if (l < 1) {
+						l = 1;
+					}
+					if (t < 1) {
+						t = 1;
+					}
+					var width = parseInt($(this).parent().css('width')) + 14;
+					var height = parseInt($(this).parent().css('height')) + 14;
+					var right = l + width;
+					var buttom = t + height;
+					var browserWidth = $(window).width();
+					var browserHeight = $(window).height();
+					if (right > browserWidth) {
+						l = browserWidth - width;
+					}
+					if (buttom > browserHeight) {
+						t = browserHeight - height;
+					}
+					$(this).parent().css({/* 修正面板位置 */
+						left : l,
+						top : t
+					});
+				}
+				$.fn.dialog.defaults.onMove = easyuiPanelOnMove;
+				$.fn.window.defaults.onMove = easyuiPanelOnMove;
+				$.fn.panel.defaults.onMove = easyuiPanelOnMove;
+			})
+		</script>
+	</body>
+</html>

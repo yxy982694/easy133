@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>欢迎使用集中运维管理系统</title>
+		<script type="text/javascript">
+			if (navigator.userAgent.indexOf("MSIE 8.0")>0 || navigator.userAgent.indexOf("MSIE 9.0")>0) {
+				document.write('<link rel="stylesheet" href="../../../css/ie8/easyui.min.css">');
+				document.write('<link rel="stylesheet" href="../../../css/ie8/icon.css">');
+			} else {
+				document.write('<link rel="stylesheet" href="../../../css/easyui.min.css">');
+				document.write('<link rel="stylesheet" href="../../../css/icon.css">');
+			}
+		</script>
+		<link rel="stylesheet" href="../../../css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../../css/iconfont.css">
+		<link rel="stylesheet" href="../../../css/modifyStyle.css">
+		<!-- ie8使用的样式 -->
+		<!--[if lt IE 9]>
+		  <link rel="stylesheet" href="../../../css/ie8/ie8.css">
+		<![endif]-->
+		<!-- ie8和ie9使用的样式 -->
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="../../../css/ie8/ie8_ie9.css">
+		  <link rel="stylesheet" href="../../../css/ie8/ie8_ie9ListPage.css">
+		<![endif]-->
+		<style type="text/css">
+			.mess-group-items{
+				overflow: hidden;
+			}
+			.mess-group-item{
+				float: left;
+				width: 33.33%;
+				margin-top: 10px;
+			}
+			label{
+				display: inline-block;
+				width: 70px;
+				text-align: right;
+				margin-right: 5px;
+			}
+			.left-item-label{
+				width: 45px;
+				text-align: center;
+			}
+			.left-item-div{
+				padding-left: 45px;
+			}
+			.mess-group-btns{
+				text-align: center;
+				margin-top: 10px;
+			}
+			.mess-group-letters{
+				padding: 0 10px;
+				color: #5241e0;
+				margin-top: 10px;
+			}
+			.mess-group-letters-all{
+				font-weight: bold;
+				cursor: pointer;
+			}
+			.mess-group-letters span+span{
+				width: 26px;
+				display: inline-block;
+				text-align: center;
+				margin-left: 5px;
+				cursor: pointer;
+			}
+			.dishi-items{
+				overflow: hidden;
+				margin-top: 15px;
+			}
+			.select-item{
+				float: left;
+				width: 50%;
+			}
+		</style>
+	</head>
+	<body class="easyui-layout">
+		<div id='Loading'>
+			<i class="fa fa-spinner fa-pulse"></i>加载中···
+		</div><!-- 130px -->
+		<div data-options="region:'north',border:false" style='height: 130px;' class="eoms-btns">
+			<form action="">
+				<div class="mess-group-items">
+					<div class="mess-group-item">
+						<label for="">组名称</label>
+						<input name="zumingcheng" type="text" value="鹤壁分公司">
+					</div>
+					<div class="mess-group-item">
+						<label for="">组说明</label>
+						<input name="zushuoming" type="text" value="">
+					</div>
+					<div class="mess-group-item">
+						<label for="">手机号码</label>
+						<input name="shoujihaoma" type="text" value="" required="required">
+					</div>
+					<div class="mess-group-item">
+						<label for="">备注(姓名)</label>
+						<input name="xingming" type="text" value="">
+					</div>
+					<div class="mess-group-item">
+						<label for="">备注(地市)</label>
+						<input name="dishi" type="text" value="">
+					</div>
+				</div>
+				<div class="mess-group-btns eoms-btns">
+					<a href="javascript:void(0)" class="easyui-linkbutton" data-options="disabled:true">重置</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clickSave()" data-options="disabled:true">保存</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton">返回</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton">退出</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton" onclick="selectCity()">选择地市</a>
+				</div>
+				<div class="mess-group-letters">
+					<span class="mess-group-letters-all">全部</span>
+					<span>A</span>
+					<span>B</span>
+					<span>C</span>
+					<span>D</span>
+					<span>E</span>
+					<span>F</span>
+					<span>G</span>
+					<span>H</span>
+					<span>I</span>
+					<span>J</span>
+					<span>K</span>
+					<span>L</span>
+					<span>M</span>
+					<span>N</span>
+					<span>O</span>
+					<span>P</span>
+					<span>Q</span>
+					<span>R</span>
+					<span>S</span>
+					<span>T</span>
+					<span>U</span>
+					<span>V</span>
+					<span>W</span>
+					<span>X</span>
+					<span>Y</span>
+					<span>Z</span>
+				</div>
+			</form>
+		</div>
+		<div data-options="region:'center',border:false" class="table-height26" style="background:#fff;padding:5px;">
+			<table id="dgqunzu"></table>
+		</div>
+		<div id="w" class="easyui-dialog" 
+		title="选择(地市群组矩阵表)" 
+		data-options="modal:true,
+		closed:true,
+		shadow:true,
+		resizable:true,
+		constrain:true
+		"
+		style="width:800px;height:250px;">
+			<div id="cc" class="easyui-layout" data-options="fit:true">
+			    <div data-options="region:'center'" class="win-center-container">
+					<div class="easyui-layout" data-options="fit:true">
+						<div data-options="region:'north'" style="height:50px;">
+							<div class="dishi-items">
+								<div class="select-item select-width98">
+									<label class="left-item-label">地市:</label>
+									<div class="left-item-div">
+										<input id="cc1" name="dept1" style="height:25px;">
+									</div>
+								</div>
+								<div class="select-item select-width98">
+									<label class="left-item-label">职位:</label>
+									<div class="left-item-div">
+										<input id="cc2" name="dept2" style="height:25px;">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div data-options="region:'center'" class="table-center-container table-height26" style="padding:5px 0;">
+							<table id="dgdishi"></table>
+						</div>
+					    <div data-options="region:'south'" style="height:35px;text-align: center;">
+							<div class="eoms-btn-container">
+								<button class="eoms-btn">确定</button>
+							</div>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--[if lt IE 9]>
+		  <script src="../../../js/ie8/html5shiv.min.js"></script>
+		  <script src="../../../js/ie8/css3-mediaqueries.js"></script>
+		<![endif]-->
+		<script type="text/javascript">
+			if (navigator.userAgent.indexOf("MSIE 8.0") > -1 || navigator.userAgent.indexOf("MSIE 9.0") > -1) {
+				document.write('<script src="../../../js/ie8/jquery.1.7.2.min.js"><\/script>');
+				document.write('<script src="../../../js/ie8/jquery.easyui.min.js"><\/script>');
+			} else {
+				document.write('<script src="../../../js/jquery.1.12.4.min.js"><\/script>');
+				document.write('<script src="../../../js/jquery.easyui.min.js"><\/script>');
+			}
+		</script>
+		<script src="../../../js/easyui-lang-zh_CN.js"></script>
+		<script src="../../../js/jquery.cookie.js"></script>
+		<script src="../../../js/global.js"></script>
+		<script>
+			eomsGlobal.completeGif();
+			$(function () {
+				var duanxinqunzuData = {
+						"total": 109,
+						"rows": [{
+						"xingming": "张三",
+						"shoujihao": "123456789101",
+						"caozuoleixing": "新增",
+						"xiugaihouxingming": "",
+						"xiugaihoushoujihao": "",
+						"shenhe": ""
+					},{
+						"xingming": "李四",
+						"shoujihao": "123456789102",
+						"caozuoleixing": "编辑",
+						"xiugaihouxingming": "张三",
+						"xiugaihoushoujihao": "12345678909",
+						"shenhe": ""
+					},{
+						"xingming": "王五",
+						"shoujihao": "123456789103",
+						"caozuoleixing": "删除",
+						"xiugaihouxingming": "",
+						"xiugaihoushoujihao": "",
+						"shenhe": ""
+					},{
+						"xingming": "张三",
+						"shoujihao": "123456789104",
+						"caozuoleixing": "新增",
+						"xiugaihouxingming": "",
+						"xiugaihoushoujihao": "",
+						"shenhe": ""
+					},{
+						"xingming": "李四",
+						"shoujihao": "123456789105",
+						"caozuoleixing": "编辑",
+						"xiugaihouxingming": "张三",
+						"xiugaihoushoujihao": "12345678909",
+						"shenhe": ""
+					},{
+						"xingming": "王五",
+						"shoujihao": "123456789106",
+						"caozuoleixing": "删除",
+						"xiugaihouxingming": "",
+						"xiugaihoushoujihao": "",
+						"shenhe": ""
+					}]
+				};
+				$('#dgqunzu').datagrid({
+					data: duanxinqunzuData,
+					rownumbers:true,
+					singleSelect:true,
+					fit:true,
+					fitColumns:true,
+					inline:true,
+					border:true,
+					columns:[[
+						{field:'xingming',title:'姓名',width:160,align:'center'},
+						{field:'shoujihao',title:'手机号',width:160,align:'center'},
+						{field:'caozuoleixing',title:'操作类型',width:160,align:'center'},
+						{field:'xiugaihouxingming',title:'修改后姓名',width:160,align:'center'},
+						{field:'xiugaihoushoujihao',title:'修改后手机号',width:160,align:'center'},
+						{field:'shenhe',title:'审核',width:200,align:'center',formatter:formatQunZu}
+					]]
+				});
+				var dgdishiData = {
+						"total": 109,
+						"rows": [{
+						"xingming": "张三",
+						"shoujihao": "123456789101",
+						"caozuoleixing": "新增",
+						"xiugaihouxingming": "",
+						"xiugaihoushoujihao": "",
+						"shenhe": ""
+					},{
+						"xingming": "李四",
+						"shoujihao": "123456789102",
+						"caozuoleixing": "编辑",
+						"xiugaihouxingming": "张三",
+						"xiugaihoushoujihao": "12345678909",
+						"shenhe": ""
+					},{
+						"xingming": "王五",
+						"shoujihao": "123456789103",
+						"caozuoleixing": "删除",
+						"xiugaihouxingming": "",
+						"xiugaihoushoujihao": "",
+						"shenhe": ""
+					},{
+						"xingming": "张三",
+						"shoujihao": "123456789104",
+						"caozuoleixing": "新增",
+						"xiugaihouxingming": "",
+						"xiugaihoushoujihao": "",
+						"shenhe": ""
+					},{
+						"xingming": "李四",
+						"shoujihao": "123456789105",
+						"caozuoleixing": "编辑",
+						"xiugaihouxingming": "张三",
+						"xiugaihoushoujihao": "12345678909",
+						"shenhe": ""
+					},{
+						"xingming": "王五",
+						"shoujihao": "123456789106",
+						"caozuoleixing": "删除",
+						"xiugaihouxingming": "",
+						"xiugaihoushoujihao": "",
+						"shenhe": ""
+					}]
+				};
+				$('#dgdishi').datagrid({
+					data: dgdishiData,
+					rownumbers:true,
+					singleSelect:true,
+					fit:true,
+					fitColumns:true,
+					inline:true,
+					border:true,
+					columns:[[
+						{field:'xingming',title:'姓名',width:160,align:'center'},
+						{field:'shoujihao',title:'手机号',width:160,align:'center'},
+						{field:'caozuoleixing',title:'操作类型',width:160,align:'center'},
+						{field:'xiugaihouxingming',title:'修改后姓名',width:160,align:'center'},
+						{field:'xiugaihoushoujihao',title:'修改后手机号',width:160,align:'center'}
+					]]
+				});
+				var cc1Data = [{
+					"id":1,
+					"text":"text1"
+				},{
+					"id":2,
+					"text":"text2"
+				},{
+					"id":3,
+					"text":"text3",
+					"selected":true
+				}];
+				$('#cc1').combobox({
+				    data:cc1Data,
+				    valueField:'id',
+				    textField:'text',
+					panelHeight: 'auto',
+					onChange: function (val) {
+						changeZhiwei();
+					}
+				});
+				var cc2Data = [{
+					"id":1,
+					"text":"text1"
+				},{
+					"id":2,
+					"text":"text2"
+				},{
+					"id":3,
+					"text":"text3",
+					"selected":true
+				}];
+				$('#cc2').combobox({
+				    data:cc2Data,
+				    valueField:'id',
+				    textField:'text',
+					panelHeight: 'auto',
+					onChange: function (val) {
+						changeZhiwei();
+					}
+				});
+			})
+			var homeObj = {};
+			function clickSave () {
+				var docForm = document.forms[0];
+				homeObj = {
+					zumingcheng: docForm.elements['zumingcheng'].value,
+					zushuoming: docForm.elements['zushuoming'].value,
+					shoujihaoma: docForm.elements['shoujihaoma'].value,
+					xingming: docForm.elements['xingming'].value,
+					dishi: docForm.elements['dishi'].value
+				};
+				console.log(homeObj);
+				var homeStr = JSON.stringify(homeObj);
+			}
+			var dishiZhiweiObj = {};
+			function changeDishi (value) {
+				var dishiZhiweiStr = '';
+				dishiZhiweiObj.dishi = value;
+				dishiZhiweiObj.zhiwei = dishiZhiweiObj.zhiwei ? dishiZhiweiObj.zhiwei : '';
+				dishiZhiweiStr = JSON.stringify(dishiZhiweiObj);
+				// 发送数据到服务器
+			}
+			function changeZhiwei (value) {
+				var dishiZhiweiStr = '';
+				dishiZhiweiObj.zhiwei = value;
+				dishiZhiweiObj.dishi = dishiZhiweiObj.dishi ? dishiZhiweiObj.dishi : '';
+				dishiZhiweiStr = JSON.stringify(dishiZhiweiObj);
+				// 发送数据到服务器
+			}
+			function selectCity () {
+				$('#w').window('open');
+				$('#w').window('hcenter');
+				$('#w').window('vcenter');
+			}
+			function formatQunZu () {
+				return '<button class="eoms-btn eoms-btn-disabled">编辑</button><button class="eoms-btn eoms-btn-disabled">删除</button>';
+			}
+			function loadSuccess () {
+				// var panel = $(this).datagrid('getPanel');
+				// var tr = panel.find('div.datagrid-body tr');
+				// tr.each(function(){
+				// 	var td = $(this).children('td');   
+				// 	td.children("div").css({
+				// 		"height": "26px"
+				// 	});   
+				// });   
+			}
+			
+			// 窗口缩小时做节流处理
+			function throttle(method, context) { 
+				 clearTimeout(method.tId); 
+					 method.tId= setTimeout(function(){ 
+					 method.call(context); 
+				 }, 100); 
+			}
+			function resizeWindow () {
+				$('#w').window('hcenter');
+				$('#w').window('vcenter');
+			}
+			window.onresize = function(){
+				throttle(resizeWindow,null);
+			}
+			var easyuiPanelOnMove = function(left, top) {  
+			    var l = left;  
+			    var t = top;  
+			    if (l < 1) {  
+			        l = 1;  
+			    }  
+			    if (t < 1) {  
+			        t = 1;  
+			    }  
+			    var width = parseInt($(this).parent().css('width')) + 14;  
+			    var height = parseInt($(this).parent().css('height')) + 14;  
+			    var right = l + width;  
+			    var buttom = t + height;  
+			    var browserWidth = $(window).width();  
+			    var browserHeight = $(window).height();  
+			    if (right > browserWidth) {  
+			        l = browserWidth - width;  
+			    }  
+			    if (buttom > browserHeight) {  
+			        t = browserHeight - height;  
+			    }  
+			    $(this).parent().css({/* 修正面板位置 */  
+			        left : l,  
+			        top : t  
+			    });  
+			}; 
+			$.fn.dialog.defaults.onMove = easyuiPanelOnMove;  
+			$.fn.window.defaults.onMove = easyuiPanelOnMove;  
+			$.fn.panel.defaults.onMove = easyuiPanelOnMove;
+		</script>
+	</body>
+</html>

@@ -1,0 +1,13 @@
+.combo{
+	width: 260px !important;
+}
+.listpage-inner-center .layout-panel-center{
+	top: 26px !important;
+}
+.tabs li a.tabs-close{
+	background: url('../../../images/easyui_bg/tab_close.png') no-repeat !important;
+}
+.tabs li a.tabs-close:hover{
+	opacity: 1;
+	filter: alpha(Opacity=100);
+}
